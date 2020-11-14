@@ -24,6 +24,11 @@ export default function BasicTable() {
     const classes = useStyles();
 
     const [data, setData] = useState([]);
+    const [searchField, setSearchField] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
+    // const filteredData = data.filter(element =>
+    // element.title.toLowerCase().includes(searchField.toLowerCase()));
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -33,7 +38,35 @@ export default function BasicTable() {
             })
     }, []);
 
+    useEffect(() => {
+        const results = data.filter(element =>
+            element.title.toLowerCase().includes(searchField)
+        );
+        setSearchResults(results);
+    }, [searchField]);
+
     return (
+        <div>
+        <input
+            type='search'
+            placeholder='search'
+            value={searchField}
+            onChange={e =>
+                setSearchField(e.target.value)
+            }
+            />
+
+            {/*<ul>*/}
+            {/*    {searchResults.map(item => (*/}
+            {/*        <li>{item.title}</li>*/}
+            {/*    ))}*/}
+            {/*</ul>*/}
+
+            {/*{data.filter(element => element.id < 50).map(filteredelement => (*/}
+            {/*    <li>*/}
+            {/*        {filteredelement.id}*/}
+            {/*    </li>*/}
+            {/*))}*/}
 
         <TableContainer className={classes.tableContainer} component={Paper}>
             <Table className={classes.table} aria-label="simple table">
@@ -47,7 +80,7 @@ export default function BasicTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {data.map((element) => (
+                    {searchResults.map((element) => (
                         <TableRow key={element.Id}>
                             <TableCell component="th" scope="row">
                                 {element.userId}
@@ -60,5 +93,6 @@ export default function BasicTable() {
                 </TableBody>
             </Table>
         </TableContainer>
+        </div>
     );
 }
