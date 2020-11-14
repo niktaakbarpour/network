@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -25,10 +25,10 @@ export default function BasicTable() {
 
     const [data, setData] = useState([]);
     const [searchField, setSearchField] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
 
-    // const filteredData = data.filter(element =>
-    // element.title.toLowerCase().includes(searchField.toLowerCase()));
+    const filteredData = data.filter(element =>
+        element.title.toLowerCase().includes(searchField.toLowerCase())
+    );
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -38,22 +38,15 @@ export default function BasicTable() {
             })
     }, []);
 
-    useEffect(() => {
-        const results = data.filter(element =>
-            element.title.toLowerCase().includes(searchField)
-        );
-        setSearchResults(results);
-    }, [searchField]);
-
     return (
         <div>
-        <input
-            type='search'
-            placeholder='search'
-            value={searchField}
-            onChange={e =>
-                setSearchField(e.target.value)
-            }
+            <input
+                type='search'
+                placeholder='search'
+                value={searchField}
+                onChange={e =>
+                    setSearchField(e.target.value)
+                }
             />
 
             {/*<ul>*/}
@@ -68,31 +61,31 @@ export default function BasicTable() {
             {/*    </li>*/}
             {/*))}*/}
 
-        <TableContainer className={classes.tableContainer} component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        {/*<TableCell>Dessert (100g serving)</TableCell>*/}
-                        <TableCell align="right">UserId</TableCell>
-                        <TableCell align="right">Id</TableCell>
-                        <TableCell align="right">Title</TableCell>
-                        <TableCell align="right">Body</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {searchResults.map((element) => (
-                        <TableRow key={element.Id}>
-                            <TableCell component="th" scope="row">
-                                {element.userId}
-                            </TableCell>
-                            <TableCell align="right">{element.id}</TableCell>
-                            <TableCell align="right">{element.title}</TableCell>
-                            <TableCell align="right">{element.body}</TableCell>
+            <TableContainer className={classes.tableContainer} component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            {/*<TableCell>Dessert (100g serving)</TableCell>*/}
+                            <TableCell align="right">UserId</TableCell>
+                            <TableCell align="right">Id</TableCell>
+                            <TableCell align="right">Title</TableCell>
+                            <TableCell align="right">Body</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {filteredData.map((element) => (
+                            <TableRow key={element.Id}>
+                                <TableCell component="th" scope="row">
+                                    {element.userId}
+                                </TableCell>
+                                <TableCell align="right">{element.id}</TableCell>
+                                <TableCell align="right">{element.title}</TableCell>
+                                <TableCell align="right">{element.body}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 }
