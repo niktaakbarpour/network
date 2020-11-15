@@ -16,11 +16,10 @@ const useStyles = makeStyles({
     tableContainer: {
         margin: "auto",
         width: '90%',
-
     }
 });
 
-export default function BasicTable() {
+export default function ProtocolsTable() {
     const classes = useStyles();
 
     const [data, setData] = useState([]);
@@ -40,14 +39,14 @@ export default function BasicTable() {
 
     return (
         <div>
-            <input
-                type='search'
-                placeholder='search'
-                value={searchField}
-                onChange={e =>
-                    setSearchField(e.target.value)
-                }
-            />
+            {/*<input*/}
+            {/*    type='search'*/}
+            {/*    placeholder='search'*/}
+            {/*    value={searchField}*/}
+            {/*    onChange={e =>*/}
+            {/*        setSearchField(e.target.value)*/}
+            {/*    }*/}
+            {/*/>*/}
 
             {/*<ul>*/}
             {/*    {searchResults.map(item => (*/}
