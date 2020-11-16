@@ -49,7 +49,6 @@ export default function PortNumber(){
             <form className={classes.form} noValidate autoComplete="off">
                 <Autocomplete
                     freeSolo
-                    id="free-solo-2-demo"
                     disableClearable
                     options={top100Films.map((option) => option.title)}
                     renderInput={(params) => (
@@ -64,7 +63,6 @@ export default function PortNumber(){
                 />
                 <Autocomplete
                     freeSolo
-                    id="free-solo-2-demo"
                     disableClearable
                     options={top100Films.map((option) => option.title)}
                     renderInput={(params) => (
