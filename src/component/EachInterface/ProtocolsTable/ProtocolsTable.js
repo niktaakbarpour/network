@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -26,11 +27,19 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
     paper: {
-        backgroundColor: theme.palette.background.paper,
-        border: '10px solid #1b5e20',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: '0px 20px 20px 20px'
     },
+    insideModal: {
+        backgroundColor: '#f5f5f5',
+        // border: '3px solid #33691e',
+        borderRadius: '8px',
+        boxShadow: theme.shadows[10],
+    },
+    exitIcon: {
+        direction: "rtl",
+        color: '#2e7d32',
+        padding: '8px',
+    }
 }));
 
 export default function ProtocolsTable() {
@@ -38,7 +47,7 @@ export default function ProtocolsTable() {
 
     const [data, setData] = useState([]);
     const [searchField, setSearchField] = useState("");
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const filteredData = data.filter(element =>
         element.title.toLowerCase().includes(searchField.toLowerCase())
@@ -104,9 +113,10 @@ export default function ProtocolsTable() {
                             </TableRow>
                         ))
                         }
+
                         <Modal
-                            aria-labelledby="transition-modal-title"
-                            aria-describedby="transition-modal-description"
+                            // aria-labelledby="transition-modal-title"
+                            // aria-describedby="transition-modal-description"
                             className={classes.modal}
                             open={open}
                             onClose={handleClose}
@@ -117,9 +127,17 @@ export default function ProtocolsTable() {
                             }}
                         >
                             <Fade in={open}>
-                                <div className={classes.paper}>
-                                    <h2 id="transition-modal-title">Transition modal</h2>
-                                    <p id="transition-modal-description">react-transition-group animates me.</p>
+                                <div className={classes.insideModal}>
+                                    <div className={classes.exitIcon}>
+                                        <CloseIcon
+                                            onClick={handleClose}
+                                            style={{ fontSize: 30 }}
+                                        />
+                                    </div>
+                                    <div className={classes.paper}>
+                                        <h2 >Transition modal</h2>
+                                        <p >react-transition-group animates me.</p>
+                                    </div>
                                 </div>
                             </Fade>
                         </Modal>

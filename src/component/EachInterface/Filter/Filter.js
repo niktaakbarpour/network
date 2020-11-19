@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto"
     },
     filterBy: {
-        borderTop: "3px solid #c5e1a5",
-        borderBottom: "3px solid #c5e1a5",
+        borderTop: "3px solid #4caf50",
+        borderBottom: "3px solid #4caf50",
         padding: "8px",
         backgroundColor: "#f1f8e9"
     },
@@ -33,11 +33,13 @@ const useStyles = makeStyles((theme) => ({
         // backgroundColor: '#f1f8e9',
         // borderLeft: "3px solid #c5e1a5",
         // borderRight: "3px solid #c5e1a5"
+
     },
     root: {
         width: '90%',
         // backgroundColor: theme.palette.background.paper,
-        margin: "auto"
+        margin: "auto",
+
     },
 }));
 
