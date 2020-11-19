@@ -7,10 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import CloseIcon from '@material-ui/icons/Close';
+import ModalLayer from "./ModalLayer";
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -21,25 +18,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",
         width: '90%',
     },
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        padding: '0px 20px 20px 20px'
-    },
-    insideModal: {
-        backgroundColor: '#f5f5f5',
-        // border: '3px solid #33691e',
-        borderRadius: '8px',
-        boxShadow: theme.shadows[10],
-    },
-    exitIcon: {
-        direction: "rtl",
-        color: '#2e7d32',
-        padding: '8px',
-    }
+
 }));
 
 export default function ProtocolsTable() {
@@ -113,34 +92,8 @@ export default function ProtocolsTable() {
                             </TableRow>
                         ))
                         }
+                        <ModalLayer handleOpen={handleOpen} handleClose={handleClose} open={open}/>
 
-                        <Modal
-                            // aria-labelledby="transition-modal-title"
-                            // aria-describedby="transition-modal-description"
-                            className={classes.modal}
-                            open={open}
-                            onClose={handleClose}
-                            closeAfterTransition
-                            BackdropComponent={Backdrop}
-                            BackdropProps={{
-                                timeout: 500,
-                            }}
-                        >
-                            <Fade in={open}>
-                                <div className={classes.insideModal}>
-                                    <div className={classes.exitIcon}>
-                                        <CloseIcon
-                                            onClick={handleClose}
-                                            style={{ fontSize: 30 }}
-                                        />
-                                    </div>
-                                    <div className={classes.paper}>
-                                        <h2 >Transition modal</h2>
-                                        <p >react-transition-group animates me.</p>
-                                    </div>
-                                </div>
-                            </Fade>
-                        </Modal>
                     </TableBody>
                 </Table>
             </TableContainer>
