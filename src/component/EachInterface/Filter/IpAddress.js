@@ -3,24 +3,25 @@ import {makeStyles, withStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
-    ipAddressContainer: {
-        borderBottom: "3px solid #66bb6a",
-        width: "inherit"
-    },
-    ipAddress: {
-        display: "block",
-        marginLeft: "20px"
-    },
-    form: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-            justifyContent: "space-evenly",
+        ipAddressContainer: {
+            borderBottom: "3px solid #66bb6a",
+            width: "inherit"
         },
-        justifyContent: "space-evenly",
-        display: "flex"
-    },
-}));
+        ipAddress: {
+            display: "block",
+            marginLeft: "20px"
+        },
+        form: {
+            '& > *': {
+                margin: theme.spacing(1),
+                width: '25ch',
+                justifyContent: "space-evenly",
+            },
+            justifyContent: "space-evenly",
+            display: "flex"
+        },
+    })
+);
 
 const CssTextField = withStyles({
     root: {
@@ -38,11 +39,10 @@ const CssTextField = withStyles({
     },
 })(TextField);
 
-export default function IpAddress(){
-
+export default function IpAddress({setParentState}) {
     const classes = useStyles();
 
-    return(
+    return (
         <div className={classes.ipAddressContainer}>
             <p className={classes.ipAddress}>IP Address:</p>
             <form className={classes.form} noValidate autoComplete="off">

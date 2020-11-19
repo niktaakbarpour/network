@@ -5,7 +5,7 @@ import {makeStyles, withStyles} from "@material-ui/core/styles";
 import {green} from "@material-ui/core/colors";
 import Checkbox from "@material-ui/core/Checkbox";
 
-    const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
         layerContainer: {
             borderBottom: "3px solid #66bb6a",
             width: "inherit",
@@ -20,32 +20,31 @@ import Checkbox from "@material-ui/core/Checkbox";
             justifyContent: "space-evenly",
             marginRight: "15px"
         },
-    }));
+    })
+);
 
-    const GreenCheckbox = withStyles({
-        root: {
-            color: green[400],
-            '&$checked': {
-                color: green[600],
-            },
+const GreenCheckbox = withStyles({
+    root: {
+        color: green[400],
+        '&$checked': {
+            color: green[600],
         },
-        checked: {},
-    })((props) => <Checkbox color="default" {...props} />);
+    },
+    checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
-export default function Layer(){
-
+export default function Layer({setParentState}) {
     const classes = useStyles();
-
     const [state, setState] = React.useState({
         checkedA: false,
         checkedB: false,
     });
 
     const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+        setState({...state, [event.target.name]: event.target.checked});
     };
 
-    return(
+    return (
         <div className={classes.layerContainer}>
             <p className={classes.layer}>Layer:</p>
             <FormGroup className={classes.formGroup} row>

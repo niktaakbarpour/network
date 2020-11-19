@@ -11,33 +11,32 @@ import Collapse from "@material-ui/core/Collapse";
 import StarBorder from "@material-ui/icons/StarBorder";
 
 const useStyles = makeStyles((theme) => ({
-    protocol: {
-        display: "block",
-        marginLeft: "20px"
-    },
-    protocolContainer: {
-        borderBottom: "3px solid #66bb6a",
-        width: "inherit"
-    },
-    nested: {
-        paddingLeft: theme.spacing(4),
-    },
-    listItem: {
-        backgroundColor: '#f1f8e9'
-    },
-    collapse: {
-        backgroundColor: '#dcedc8'
-    },
-    root: {
-        width: '90%',
-        backgroundColor: theme.palette.background.paper,
-        margin: "auto"
-    },
-}));
+        protocol: {
+            display: "block",
+            marginLeft: "20px"
+        },
+        protocolContainer: {
+            borderBottom: "3px solid #66bb6a",
+            width: "inherit"
+        },
+        nested: {
+            paddingLeft: theme.spacing(4),
+        },
+        listItem: {
+            backgroundColor: '#f1f8e9'
+        },
+        collapse: {
+            backgroundColor: '#dcedc8'
+        },
+        root: {
+            width: '90%',
+            backgroundColor: theme.palette.background.paper,
+            margin: "auto"
+        },
+    })
+);
 
-
-export default function Protocol(){
-
+export default function Protocol({setParentState}) {
     const classes = useStyles();
     const [openProtocol, setOpenProtocol] = React.useState(false);
 
@@ -45,38 +44,36 @@ export default function Protocol(){
         setOpenProtocol(!openProtocol);
     };
 
-    return(
+    return (
         <div className={classes.protocolContainer}>
             <p className={classes.protocol}>Protocol:</p>
-            <List
-                className={classes.root}
-            >
+            <List className={classes.root}>
                 <ListItem className={classes.listItem} button onClick={handleClickProtocol}>
                     <ListItemIcon>
-                        <InboxIcon />
+                        <InboxIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Select Protocol" />
-                    {openProtocol ? <ExpandLess /> : <ExpandMore />}
+                    <ListItemText primary="Select Protocol"/>
+                    {openProtocol ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapse className={classes.collapse} in={openProtocol} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                         <ListItem button className={classes.nested}>
                             <ListItemIcon>
-                                <StarBorder />
+                                <StarBorder/>
                             </ListItemIcon>
-                            <ListItemText primary="Starred" />
+                            <ListItemText primary="Starred"/>
                         </ListItem>
                     </List>
                 </Collapse>
