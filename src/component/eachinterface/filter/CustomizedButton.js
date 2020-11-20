@@ -1,15 +1,15 @@
 import React from 'react';
-import {  withStyles, makeStyles } from '@material-ui/core/styles';
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { green } from '@material-ui/core/colors';
+import {green} from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
-    margin: {
-        margin: theme.spacing(1),
-    },
-    buttonContainer: {
-        margin: "auto"
-    }
+        margin: {
+            margin: theme.spacing(1)
+        },
+        buttonContainer: {
+            margin: "auto"
+        }
     })
 );
 
@@ -18,19 +18,18 @@ const ColorButton = withStyles((theme) => ({
         color: theme.palette.getContrastText(green[500]),
         backgroundColor: green[500],
         '&:hover': {
-            backgroundColor: green[700],
-        },
-    },
+            backgroundColor: green[700]
+        }
+    }
 }))(Button);
 
-export default function CustomizedButton({setParentState}) {
-
+export default function CustomizedButton({applyFilterHandler}) {
     const classes = useStyles();
 
     return (
-        <div className={classes.buttonContainer} >
+        <div className={classes.buttonContainer}>
             <ColorButton
-                onClick={setParentState}
+                onClick={applyFilterHandler}
                 variant="contained"
                 color="primary"
                 size="large"

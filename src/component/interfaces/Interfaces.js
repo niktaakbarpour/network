@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
             margin: "auto"
         },
         nested: {
-            paddingLeft: theme.spacing(4),
-        },
+            paddingLeft: theme.spacing(4)
+        }
     })
 );
 
-export default function Interface() {
+export default function Interfaces() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const [interfaces, setInterfaces] = React.useState([]);

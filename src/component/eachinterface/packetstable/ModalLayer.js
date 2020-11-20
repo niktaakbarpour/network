@@ -1,36 +1,35 @@
-import React, {useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import CloseIcon from "@material-ui/icons/Close";
-import TableBody from "@material-ui/core/TableBody";
 
 
 const useStyles = makeStyles((theme) => ({
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    paper: {
-        padding: '0px 20px 20px 20px'
-    },
-    insideModal: {
-        backgroundColor: '#f5f5f5',
-        // border: '3px solid #33691e',
-        borderRadius: '8px',
-        boxShadow: theme.shadows[10],
-    },
-    exitIcon: {
-        direction: "rtl",
-        color: '#2e7d32',
-        padding: '8px',
-    }
-}));
+        modal: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        },
+        paper: {
+            padding: '0px 20px 20px 20px'
+        },
+        insideModal: {
+            backgroundColor: '#f5f5f5',
+            // border: '3px solid #33691e',
+            borderRadius: '8px',
+            boxShadow: theme.shadows[10]
+        },
+        exitIcon: {
+            direction: "rtl",
+            color: '#2e7d32',
+            padding: '8px'
+        }
+    })
+);
 
 export default function ModalLayer(props) {
-
     const classes = useStyles();
 
     const {open, handleOpen, handleClose} = props;
@@ -45,7 +44,7 @@ export default function ModalLayer(props) {
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
-                timeout: 500,
+                timeout: 500
             }}
         >
             <Fade in={open}>
@@ -53,12 +52,12 @@ export default function ModalLayer(props) {
                     <div className={classes.exitIcon}>
                         <CloseIcon
                             onClick={handleClose}
-                            style={{ fontSize: 30 }}
+                            style={{fontSize: 30}}
                         />
                     </div>
                     <div className={classes.paper}>
-                        <h2 >Transition modal</h2>
-                        <p >react-transition-group animates me.</p>
+                        <h2>Transition modal</h2>
+                        <p>react-transition-group animates me.</p>
                     </div>
                 </div>
             </Fade>

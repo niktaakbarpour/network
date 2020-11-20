@@ -12,16 +12,16 @@ import socket from "../../ServerConnector";
 
 const useStyles = makeStyles((theme) => ({
         table: {
-            minWidth: 650,
+            minWidth: 650
         },
         tableContainer: {
             margin: "auto",
-            width: '90%',
-        },
+            width: '90%'
+        }
     })
 );
 
-export default function ProtocolsTable({filters}) {
+export default function PacketsTable({filters}) {
     const classes = useStyles();
 
     const [data, setData] = useState([]);

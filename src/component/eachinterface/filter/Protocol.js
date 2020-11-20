@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
             width: "inherit"
         },
         nested: {
-            paddingLeft: theme.spacing(4),
+            paddingLeft: theme.spacing(4)
         },
         listItem: {
             backgroundColor: '#f1f8e9'
@@ -32,11 +32,11 @@ const useStyles = makeStyles((theme) => ({
             width: '90%',
             backgroundColor: theme.palette.background.paper,
             margin: "auto"
-        },
+        }
     })
 );
 
-export default function Protocol({setParentState}) {
+export default function Protocol({currentValue, setParentState}) {
     const classes = useStyles();
     const [openProtocol, setOpenProtocol] = React.useState(false);
 
@@ -60,7 +60,7 @@ export default function Protocol({setParentState}) {
                     <ListItemIcon>
                         <InboxIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Select Protocol"/>
+                    <ListItemText primary={currentValue}/>
                     {openProtocol ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapse className={classes.collapse} in={openProtocol} timeout="auto" unmountOnExit>
@@ -83,6 +83,7 @@ export default function Protocol({setParentState}) {
 }
 
 const protocols = [
+    "All",
     "UDP",
     "TCP"
 ]

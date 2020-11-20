@@ -13,7 +13,7 @@ import StarBorder from "@material-ui/icons/StarBorder";
 const useStyles = makeStyles((theme) => ({
         layerContainer: {
             borderBottom: "3px solid #66bb6a",
-            width: "inherit",
+            width: "inherit"
         },
         layer: {
             display: "block",
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
             marginRight: "15px"
         },
         nested: {
-            paddingLeft: theme.spacing(4),
+            paddingLeft: theme.spacing(4)
         },
         listItem: {
             backgroundColor: '#f1f8e9'
@@ -36,13 +36,12 @@ const useStyles = makeStyles((theme) => ({
             width: '90%',
             backgroundColor: theme.palette.background.paper,
             margin: "auto"
-        },
+        }
     })
 );
 
-export default function Layer({setParentState}) {
+export default function Layer({currentValue, setParentState}) {
     const classes = useStyles();
-
     const [openLayer, setOpenLayer] = React.useState(false);
 
     const toggleLayers = () => {
@@ -65,7 +64,7 @@ export default function Layer({setParentState}) {
                     <ListItemIcon>
                         <InboxIcon/>
                     </ListItemIcon>
-                    <ListItemText primary="Select Layer"/>
+                    <ListItemText primary={currentValue}/>
                     {openLayer ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapse className={classes.collapse} in={openLayer} timeout="auto" unmountOnExit>

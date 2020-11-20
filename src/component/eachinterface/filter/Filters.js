@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Layer from "./Layer";
 import Protocol from "./Protocol";
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#f1f8e9"
         },
         nested: {
-            paddingLeft: theme.spacing(4),
+            paddingLeft: theme.spacing(4)
         },
         listItem: {
             // backgroundColor: '#f1f8e9'
@@ -37,25 +37,24 @@ const useStyles = makeStyles((theme) => ({
         root: {
             width: '90%',
             // backgroundColor: theme.palette.background.paper,
-            margin: "auto",
-        },
+            margin: "auto"
+        }
     })
 );
 
-export default function Filter({setParentState}) {
+export default function Filters({setParentState}) {
     const classes = useStyles();
     const [openFilter, setOpenFilter] = React.useState(false);
     const [filters, setFilters] = React.useState({
-        networkLayer: true,
-        applicationLayer: true,
-        protocol: "",
+        layer: "All",
+        protocol: "All",
         sourceIp: "",
         destinationIp: "",
         sourcePort: "",
         destinationPort: ""
     });
 
-    const handleClickFilter = () => {
+    const toggleFilters = () => {
         setOpenFilter(!openFilter);
     };
 
@@ -68,32 +67,38 @@ export default function Filter({setParentState}) {
 
     const handleFiltersApplied = () => {
         setParentState(filters)
-        handleClickFilter()
+        toggleFilters()
     }
 
     return (
         <div className={classes.container}>
             <List className={classes.root}>
-                <ListItem className={classes.listItem} button onClick={handleClickFilter}>
+                <ListItem className={classes.listItem} button onClick={toggleFilters}>
                     <ListItemText className={classes.filterBy} primary="Filter By"/>
                     {openFilter ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
                 <Collapse className={classes.collapse} in={openFilter} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem className={classes.nested}>
-                            <Layer setParentState={handleFiltersChanged}/>
+                            <Layer currentValue={filters.layer} setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <Protocol setParentState={handleFiltersChanged}/>
+                            <Protocol currentValue={filters.protocol} setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <IpAddress setParentState={handleFiltersChanged}/>
+                            <IpAddress currentValue={{
+                                sourceIp: filters.sourceIp,
+                                destinationIp: filters.destinationIp
+                            }} setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <PortNumber setParentState={handleFiltersChanged}/>
+                            <PortNumber currentValue={{
+                                sourcePort: filters.sourcePort,
+                                destinationPort: filters.destinationPort
+                            }} setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <CustomizedButton setParentState={handleFiltersApplied} />
+                            <CustomizedButton applyFilterHandler={handleFiltersApplied}/>
                         </ListItem>
                     </List>
                 </Collapse>

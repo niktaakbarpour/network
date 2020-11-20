@@ -16,31 +16,31 @@ const useStyles = makeStyles((theme) => ({
             '& > *': {
                 margin: theme.spacing(1),
                 width: '25ch',
-                justifyContent: "space-evenly",
+                justifyContent: "space-evenly"
             },
             justifyContent: "space-evenly",
             display: "flex"
-        },
+        }
     })
 );
 
 const CssTextField = withStyles({
     root: {
         '& label.Mui-focused': {
-            color: '#1b5e20',
+            color: '#1b5e20'
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#aed581',
+                borderColor: '#aed581'
             },
             '&.Mui-focused fieldset': {
-                borderColor: '#9ccc65',
-            },
-        },
-    },
+                borderColor: '#9ccc65'
+            }
+        }
+    }
 })(TextField);
 
-export default function PortNumber({setParentState}) {
+export default function PortNumber({currentValue, setParentState}) {
     const classes = useStyles();
 
     const handlePortChange = (ev) => {
@@ -56,7 +56,7 @@ export default function PortNumber({setParentState}) {
         //     key: ev.target.name,
         //     value: extractPortNumber(ev.target.value)
         // })
-        console.log(ev.target)
+        console.log(ev)
     }
 
     const extractPortNumber = (text) => {
@@ -73,6 +73,7 @@ export default function PortNumber({setParentState}) {
                     disableClearable
                     options={ports}
                     onChange={handlePortSelected}
+                    value={currentValue.sourcePort}
                     renderInput={(params) => (
                         <CssTextField
                             onChange={handlePortChange}
@@ -90,6 +91,7 @@ export default function PortNumber({setParentState}) {
                     disableClearable
                     options={ports}
                     onChange={handlePortSelected}
+                    value={currentValue.destinationPort}
                     renderInput={(params) => (
                         <CssTextField
                             onChange={handlePortChange}

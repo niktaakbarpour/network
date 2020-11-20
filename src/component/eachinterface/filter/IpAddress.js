@@ -15,31 +15,31 @@ const useStyles = makeStyles((theme) => ({
             '& > *': {
                 margin: theme.spacing(1),
                 width: '25ch',
-                justifyContent: "space-evenly",
+                justifyContent: "space-evenly"
             },
             justifyContent: "space-evenly",
             display: "flex"
-        },
+        }
     })
 );
 
 const CssTextField = withStyles({
     root: {
         '& label.Mui-focused': {
-            color: '#1b5e20',
+            color: '#1b5e20'
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#aed581',
+                borderColor: '#aed581'
             },
             '&.Mui-focused fieldset': {
-                borderColor: '#9ccc65',
-            },
-        },
-    },
+                borderColor: '#9ccc65'
+            }
+        }
+    }
 })(TextField);
 
-export default function IpAddress({setParentState}) {
+export default function IpAddress({currentValue, setParentState}) {
     const classes = useStyles();
 
     const handleIpChanged = (ev) => {
@@ -58,12 +58,16 @@ export default function IpAddress({setParentState}) {
                     name="sourceIp"
                     variant="outlined"
                     label="Source IP"
+                    value={currentValue.sourceIp}
+                    type='search'
                 />
                 <CssTextField
                     onChange={handleIpChanged}
                     name="destinationIp"
                     variant="outlined"
                     label="Destination IP"
+                    value={currentValue.destinationIp}
+                    type='search'
                 />
             </form>
         </div>
