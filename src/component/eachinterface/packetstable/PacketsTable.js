@@ -27,38 +27,38 @@ const useStyles = makeStyles((theme) => ({
             margin: "auto"
         },
 
-        count: {
-            backgroundColor: '#2ed573',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
-        },
+    count: {
+        backgroundColor: '#66bb6a',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
 
-        maximumSize: {
-            backgroundColor: '#42a5f5',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
-        },
-        averageSize: {
-            backgroundColor: '#629749',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
-        },
-        blablabla: {
-            backgroundColor: '#18dcff',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
-        },
-        paragraph: {
+    maximumSize: {
+        backgroundColor: '#4caf50',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+    averageSize: {
+        backgroundColor: '#629749',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+    blablabla: {
+        backgroundColor: '#8bc34a',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+    paragraph: {
             textAlign: "center"
-        }
+    }
     })
 );
 

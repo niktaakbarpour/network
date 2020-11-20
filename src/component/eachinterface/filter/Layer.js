@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
             paddingLeft: theme.spacing(4)
         },
         listItem: {
-            backgroundColor: '#b2dfdb'
+            backgroundColor: '#f1f8e9'
         },
         collapse: {
             backgroundColor: '#fafafa'
