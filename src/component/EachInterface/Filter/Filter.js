@@ -44,27 +44,30 @@ const useStyles = makeStyles((theme) => ({
 export default function Filter({setParentState}) {
     const classes = useStyles();
     const [openFilter, setOpenFilter] = React.useState(false);
+    const [filters, setFilters] = React.useState({
+        networkLayer: true,
+        applicationLayer: true,
+        protocol: "",
+        sourceIp: "",
+        destinationIp: "",
+        sourcePort: "",
+        destinationPort: ""
+    });
 
     const handleClickFilter = () => {
         setOpenFilter(!openFilter);
     };
 
-    const handleLayerChanged = (filter) => {
-
+    const handleFiltersChanged = (filter) => {
+        setFilters({
+            ...filters,
+            [filter.key]: filter.value
+        })
     }
 
-    const handleProtocolChanged = (filter) => {
-
+    const handleFiltersApplied = () => {
+        setParentState(filters)
     }
-
-    const handleIpChanged = (filter) => {
-
-    }
-
-    const handlePortChanged = (filter) => {
-
-    }
-
 
     return (
         <div className={classes.container}>
@@ -76,16 +79,16 @@ export default function Filter({setParentState}) {
                 <Collapse className={classes.collapse} in={openFilter} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem className={classes.nested}>
-                            <Layer setParentState={(filter) => handleLayerChanged(filter)}/>
+                            <Layer setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <Protocol setParentState={(filter) => handleProtocolChanged(filter)}/>
+                            <Protocol setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <IpAddress setParentState={(filter) => handleIpChanged(filter)}/>
+                            <IpAddress setParentState={handleFiltersChanged}/>
                         </ListItem>
                         <ListItem className={classes.nested}>
-                            <PortNumber setParentState={(filter) => handlePortChanged(filter)}/>
+                            <PortNumber setParentState={handleFiltersChanged}/>
                         </ListItem>
                     </List>
                 </Collapse>

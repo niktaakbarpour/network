@@ -36,12 +36,16 @@ const GreenCheckbox = withStyles({
 export default function Layer({setParentState}) {
     const classes = useStyles();
     const [state, setState] = React.useState({
-        checkedA: false,
-        checkedB: false,
+        networkLayer: true,
+        applicationLayer: true,
     });
 
     const handleChange = (event) => {
         setState({...state, [event.target.name]: event.target.checked});
+        setParentState({
+            key: event.target.name,
+            value: event.target.checked
+        })
     };
 
     return (
@@ -51,9 +55,9 @@ export default function Layer({setParentState}) {
                 <FormControlLabel
                     control={
                         <GreenCheckbox
-                            checked={state.checkedA}
+                            checked={state.networkLayer}
                             onChange={handleChange}
-                            name="checkedA"
+                            name="networkLayer"
                         />
                     }
                     label="Network"
@@ -61,9 +65,9 @@ export default function Layer({setParentState}) {
                 <FormControlLabel
                     control={
                         <GreenCheckbox
-                            checked={state.checkedB}
+                            checked={state.applicationLayer}
                             onChange={handleChange}
-                            name="checkedB"
+                            name="applicationLayer"
                         />
                     }
                     label="Application"

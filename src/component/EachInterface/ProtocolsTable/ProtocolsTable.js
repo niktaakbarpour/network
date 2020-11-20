@@ -73,7 +73,7 @@ export default function ProtocolsTable({filters}) {
                     </TableHead>
                     <TableBody>
                         {filteredDate.map((element) => (
-                                <TableRow onClick={handleOpen} key={element.Id}>
+                                <TableRow onClick={handleOpen} key={element.id}>
                                     <TableCell component="th" scope="row">{element.userId}</TableCell>
                                     <TableCell align="right">{element.id}</TableCell>
                                     <TableCell align="right">{element.title}</TableCell>

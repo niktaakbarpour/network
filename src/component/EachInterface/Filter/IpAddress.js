@@ -42,15 +42,26 @@ const CssTextField = withStyles({
 export default function IpAddress({setParentState}) {
     const classes = useStyles();
 
+    const handleIpChanged = (ev) => {
+        setParentState({
+            key: ev.target.name,
+            value: ev.target.value
+        })
+    }
+
     return (
         <div className={classes.ipAddressContainer}>
             <p className={classes.ipAddress}>IP Address:</p>
             <form className={classes.form} noValidate autoComplete="off">
                 <CssTextField
+                    onChange={handleIpChanged}
+                    name="sourceIp"
                     variant="outlined"
                     label="Source IP"
                 />
                 <CssTextField
+                    onChange={handleIpChanged}
+                    name="destinationIp"
                     variant="outlined"
                     label="Destination IP"
                 />

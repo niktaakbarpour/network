@@ -7,9 +7,10 @@ function Page() {
     const handleFiltersChanged = (filter) => {
         setFilters(filter)
     }
+
     return (
         <div>
-            <Filter setParentState={(filter) => handleFiltersChanged(filter)}/>
+            <Filter setParentState={handleFiltersChanged}/>
             <ProtocolsTable filters={filters}/>
         </div>
     );
