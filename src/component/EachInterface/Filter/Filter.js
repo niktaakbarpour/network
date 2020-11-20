@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Layer from "./Layer";
 import Protocol from "./Protocol";
@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
+import CustomizedButton from "./CustomizedButton";
 
 const useStyles = makeStyles((theme) => ({
         container: {
@@ -67,6 +68,7 @@ export default function Filter({setParentState}) {
 
     const handleFiltersApplied = () => {
         setParentState(filters)
+        handleClickFilter()
     }
 
     return (
@@ -89,6 +91,9 @@ export default function Filter({setParentState}) {
                         </ListItem>
                         <ListItem className={classes.nested}>
                             <PortNumber setParentState={handleFiltersChanged}/>
+                        </ListItem>
+                        <ListItem className={classes.nested}>
+                            <CustomizedButton setParentState={handleFiltersApplied} />
                         </ListItem>
                     </List>
                 </Collapse>
