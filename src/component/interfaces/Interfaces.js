@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
-import socket from "../ServerConnector";
+import axios from "axios"
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -23,29 +23,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Interfaces() {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
     const [interfaces, setInterfaces] = React.useState([]);
 
     useEffect(() => {
-        socket.onopen = ev => {
-            socket.send(JSON.stringify({
-                key: "GET_INTERFACES",
-                value: ""
-            }))
-        }
-        socket.onmessage = ev => {
-            const interfaces = JSON.parse(ev.data)
-            setInterfaces(interfaces)
-        }
+        axios.get("http://25.105.127.25:8080/interface")
+            .then(res => {
+                setInterfaces(res.data)
+            })
     }, [])
 
-    const handleClick = (id) => {
-        setOpen(!open);
-        socket.send(JSON.stringify({
-                key: "SELECT_INTERFACE",
-                value: `${id}`
-            })
-        );
+    const handleClick = (name) => {
+        axios.post(
+            "http://25.105.127.25:8080/interface",
+            {name: name}
+        ).then(res => {
+            if (res.status === 200) {
+                //TODO: Navigate to EachInterface
+            }
+        })
     };
 
     return (
@@ -62,7 +57,7 @@ export default function Interfaces() {
             {
                 interfaces.map(value => {
                     return (
-                        <ListItem button onClick={handleClick.bind(null, value.id)}>
+                        <ListItem key={value.id} button onClick={handleClick.bind(null, value.name)}>
                             <ListItemIcon>
                                 <SendIcon/>
                             </ListItemIcon>
@@ -71,35 +66,6 @@ export default function Interfaces() {
                     )
                 })
             }
-            {/*<ListItem button>*/}
-            {/*    <ListItemIcon>*/}
-            {/*        <SendIcon/>*/}
-            {/*    </ListItemIcon>*/}
-            {/*    <ListItemText primary="Sent mail"/>*/}
-            {/*</ListItem>*/}
-            {/*<ListItem button>*/}
-            {/*    <ListItemIcon>*/}
-            {/*        <DraftsIcon/>*/}
-            {/*    </ListItemIcon>*/}
-            {/*    <ListItemText primary="Drafts"/>*/}
-            {/*</ListItem>*/}
-            {/*<ListItem button onClick={handleClick}>*/}
-            {/*    <ListItemIcon>*/}
-            {/*        <InboxIcon/>*/}
-            {/*    </ListItemIcon>*/}
-            {/*    <ListItemText primary="Inbox"/>*/}
-            {/*    /!*{open ? <ExpandLess /> : <ExpandMore />}*!/*/}
-            {/*</ListItem>*/}
-            {/*<Collapse in={open} timeout="auto" unmountOnExit>*/}
-            {/*    <List component="div" disablePadding>*/}
-            {/*        <ListItem button className={classes.nested}>*/}
-            {/*            <ListItemIcon>*/}
-            {/*                <StarBorder />*/}
-            {/*            </ListItemIcon>*/}
-            {/*            <ListItemText primary="Starred" />*/}
-            {/*        </ListItem>*/}
-            {/*    </List>*/}
-            {/*</Collapse>*/}
         </List>
     );
 }

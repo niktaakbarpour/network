@@ -8,7 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ModalLayer from "./ModalLayer";
-import socket from "../../ServerConnector";
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,47 +18,47 @@ const useStyles = makeStyles((theme) => ({
             margin: "auto",
             width: '90%'
         },
-    flexContainer: {
-        display: "flex",
-        flexWrap: "wrap",
-        textAlign: "left",
-        boxSizing: "borderBox",
-        maxWidth: "90%",
-        margin: "auto"
-    },
+        flexContainer: {
+            display: "flex",
+            flexWrap: "wrap",
+            textAlign: "left",
+            boxSizing: "borderBox",
+            maxWidth: "90%",
+            margin: "auto"
+        },
 
-    count: {
-        backgroundColor: '#2ed573',
-        padding: '10px',
-        flex: '20%',
-        margin: '20px',
-        borderRadius: "5px"
-    },
+        count: {
+            backgroundColor: '#2ed573',
+            padding: '10px',
+            flex: '20%',
+            margin: '20px',
+            borderRadius: "5px"
+        },
 
-    maximumSize: {
-        backgroundColor: '#42a5f5',
-        padding: '10px',
-        flex: '20%',
-        margin: '20px',
-        borderRadius: "5px"
-    },
-    averageSize: {
-        backgroundColor: '#629749',
-        padding: '10px',
-        flex: '20%',
-        margin: '20px',
-        borderRadius: "5px"
-    },
-    blablabla: {
-        backgroundColor: '#18dcff',
-        padding: '10px',
-        flex: '20%',
-        margin: '20px',
-        borderRadius: "5px"
-    },
-    paragraph: {
+        maximumSize: {
+            backgroundColor: '#42a5f5',
+            padding: '10px',
+            flex: '20%',
+            margin: '20px',
+            borderRadius: "5px"
+        },
+        averageSize: {
+            backgroundColor: '#629749',
+            padding: '10px',
+            flex: '20%',
+            margin: '20px',
+            borderRadius: "5px"
+        },
+        blablabla: {
+            backgroundColor: '#18dcff',
+            padding: '10px',
+            flex: '20%',
+            margin: '20px',
+            borderRadius: "5px"
+        },
+        paragraph: {
             textAlign: "center"
-    }
+        }
     })
 );
 
@@ -70,18 +69,17 @@ export default function PacketsTable({filters}) {
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        socket.onmessage = ev => {
-            data.push(JSON.parse(ev.data))
-            setData(data)
-        }
-        socket.onerror = ev => {
-            console.log(ev)
-        }
-        // socket.send(JSON.stringify({
-        //         key: "START_MONITORING",
-        //         value: ""
-        //     })
-        // )
+        // const socket = new WebSocket("")
+        // socket.onopen = ev => {
+        //
+        // }
+        // socket.onmessage = ev => {
+        //     data.push(JSON.parse(ev.data))
+        //     setData(data)
+        // }
+        // socket.onerror = ev => {
+        //     console.log(ev)
+        // }
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then((response) => response.json())
             .then((items) => {
@@ -137,19 +135,23 @@ export default function PacketsTable({filters}) {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="right">UserId</TableCell>
-                            <TableCell align="right">Id</TableCell>
-                            <TableCell align="right">Title</TableCell>
-                            <TableCell align="right">Body</TableCell>
+                            <TableCell align="right">Date</TableCell>
+                            <TableCell align="right">Size</TableCell>
+                            <TableCell align="right">Protocol</TableCell>
+                            <TableCell align="right">Source Ip</TableCell>
+                            <TableCell align="right">Destination Ip</TableCell>
+                            <TableCell align="right">More</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {filteredDate.map((element) => (
-                                <TableRow onClick={handleOpen} key={element.id}>
-                                    <TableCell component="th" scope="row">{element.userId}</TableCell>
-                                    <TableCell align="right">{element.id}</TableCell>
-                                    <TableCell align="right">{element.title}</TableCell>
-                                    <TableCell align="right">{element.body}</TableCell>
+                        {filteredDate.map((packet) => (
+                                <TableRow onClick={handleOpen} key={packet.id}>
+                                    <TableCell component="th" scope="row">{packet.userId}</TableCell>
+                                    <TableCell align="right">{packet.id}</TableCell>
+                                    <TableCell align="right">{packet.title}</TableCell>
+                                    <TableCell align="right">{packet.body}</TableCell>
+                                    <TableCell align="right"></TableCell>
+                                    <TableCell align="right"></TableCell>
                                 </TableRow>
                             )
                         )}
