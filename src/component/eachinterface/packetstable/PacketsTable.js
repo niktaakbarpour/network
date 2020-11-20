@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     count: {
-        backgroundColor: '#2ed573',
+        backgroundColor: '#66bb6a',
         padding: '10px',
         flex: '20%',
         margin: '20px',
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     maximumSize: {
-        backgroundColor: '#42a5f5',
+        backgroundColor: '#4caf50',
         padding: '10px',
         flex: '20%',
         margin: '20px',
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "5px"
     },
     blablabla: {
-        backgroundColor: '#18dcff',
+        backgroundColor: '#8bc34a',
         padding: '10px',
         flex: '20%',
         margin: '20px',
