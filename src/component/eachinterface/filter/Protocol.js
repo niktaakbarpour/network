@@ -3,12 +3,12 @@ import {makeStyles} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import StarBorder from "@material-ui/icons/StarBorder";
+import ReceiptIcon from '@material-ui/icons/Receipt';
 
 const useStyles = makeStyles((theme) => ({
         protocol: {
@@ -23,14 +23,15 @@ const useStyles = makeStyles((theme) => ({
             paddingLeft: theme.spacing(4)
         },
         listItem: {
-            backgroundColor: '#f1f8e9'
+            backgroundColor: '#b2dfdb'
         },
         collapse: {
-            backgroundColor: '#dcedc8'
+            backgroundColor: '#fafafa'
         },
         root: {
             width: '90%',
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: '#ffffff',
+            // backgroundColor: theme.palette.background.paper,
             margin: "auto"
         }
     })
@@ -58,7 +59,7 @@ export default function Protocol({currentValue, setParentState}) {
             <List className={classes.root}>
                 <ListItem className={classes.listItem} onClick={toggleProtocols} button>
                     <ListItemIcon>
-                        <InboxIcon/>
+                        <ReceiptIcon/>
                     </ListItemIcon>
                     <ListItemText primary={currentValue}/>
                     {openProtocol ? <ExpandLess/> : <ExpandMore/>}

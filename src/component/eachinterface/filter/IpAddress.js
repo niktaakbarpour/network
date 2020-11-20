@@ -30,10 +30,13 @@ const CssTextField = withStyles({
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#aed581'
+                // borderColor: '#aed581',
+                border: "2px solid #4db6ac",
+                backgroundColor: 'white'
             },
             '&.Mui-focused fieldset': {
-                borderColor: '#9ccc65'
+                border: "2px solid #4db6ac",
+                // borderColor: '#9ccc65'
             }
         }
     }

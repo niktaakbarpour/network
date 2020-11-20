@@ -11,6 +11,7 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import CustomizedButton from "./CustomizedButton";
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
         container: {
@@ -18,19 +19,21 @@ const useStyles = makeStyles((theme) => ({
             margin: "auto"
         },
         filterBy: {
-            borderTop: "3px solid #4caf50",
-            borderBottom: "3px solid #4caf50",
             padding: "8px",
-            backgroundColor: "#f1f8e9"
         },
         nested: {
             paddingLeft: theme.spacing(4)
         },
         listItem: {
+            borderLeft: "5px solid #4caf50",
+            borderRight: "5px solid #4caf50",
+            borderBottom: "3px solid #4caf50",
+            borderRadius: '5px',
+            backgroundColor: "#f1f8e9"
             // backgroundColor: '#f1f8e9'
         },
         collapse: {
-            // backgroundColor: '#f1f8e9',
+            backgroundColor: '#ffffff',
             // borderLeft: "3px solid #c5e1a5",
             // borderRight: "3px solid #c5e1a5"
         },
@@ -73,10 +76,13 @@ export default function Filters({setParentState}) {
     return (
         <div className={classes.container}>
             <List className={classes.root}>
+                <Box boxShadow={3}>
                 <ListItem className={classes.listItem} button onClick={toggleFilters}>
                     <ListItemText className={classes.filterBy} primary="Filter By"/>
                     {openFilter ? <ExpandLess/> : <ExpandMore/>}
                 </ListItem>
+                </Box>
+                <Box boxShadow={2}>
                 <Collapse className={classes.collapse} in={openFilter} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         <ListItem className={classes.nested}>
@@ -102,6 +108,7 @@ export default function Filters({setParentState}) {
                         </ListItem>
                     </List>
                 </Collapse>
+                </Box>
             </List>
         </div>
     );

@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ModalLayer from "./ModalLayer";
 import socket from "../../ServerConnector";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
         table: {
@@ -17,7 +18,48 @@ const useStyles = makeStyles((theme) => ({
         tableContainer: {
             margin: "auto",
             width: '90%'
-        }
+        },
+    flexContainer: {
+        display: "flex",
+        flexWrap: "wrap",
+        textAlign: "left",
+        boxSizing: "borderBox",
+        maxWidth: "90%",
+        margin: "auto"
+    },
+
+    count: {
+        backgroundColor: '#2ed573',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+
+    maximumSize: {
+        backgroundColor: '#42a5f5',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+    averageSize: {
+        backgroundColor: '#629749',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+    blablabla: {
+        backgroundColor: '#18dcff',
+        padding: '10px',
+        flex: '20%',
+        margin: '20px',
+        borderRadius: "5px"
+    },
+    paragraph: {
+            textAlign: "center"
+    }
     })
 );
 
@@ -61,6 +103,36 @@ export default function PacketsTable({filters}) {
 
     return (
         <div>
+            <div className={classes.flexContainer}>
+                <Box
+                    boxShadow={3}
+                    className={classes.count}
+                >
+                    Count
+                    <p className={classes.paragraph}>alwicfalcikmas</p>
+                </Box>
+                <Box
+                    boxShadow={3}
+                    className={classes.maximumSize}
+                >
+                    Maximum Size
+                    <p className={classes.paragraph}>alwicfalcikmas</p>
+                </Box>
+                <Box
+                    boxShadow={3}
+                    className={classes.averageSize}
+                >
+                    Average Size
+                    <p className={classes.paragraph}>alwicfalcikmas</p>
+                </Box>
+                <Box
+                    boxShadow={3}
+                    className={classes.blablabla}
+                >
+                    bla bla bla
+                    <p className={classes.paragraph}>alwicfalcikmas</p>
+                </Box>
+            </div>
             <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>

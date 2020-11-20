@@ -27,14 +27,18 @@ const useStyles = makeStyles((theme) => ({
 const CssTextField = withStyles({
     root: {
         '& label.Mui-focused': {
-            color: '#1b5e20'
+            color: '#1b5e20',
+
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#aed581'
+                // borderColor: '#aed581',
+                border: "2px solid #4db6ac",
+                backgroundColor: 'white'
             },
             '&.Mui-focused fieldset': {
-                borderColor: '#9ccc65'
+                // borderColor: '#9ccc65',
+                border: "2px solid #4db6ac"
             }
         }
     }
