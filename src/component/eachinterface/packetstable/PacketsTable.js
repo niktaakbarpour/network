@@ -27,7 +27,7 @@ export default function PacketsTable({filters}) {
     const classes = useStyles();
     const [packets, setPackets] = useState([]);
     const [openModal, setOpenModal] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // const socket = new WebSocket("")
