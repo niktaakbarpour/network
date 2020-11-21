@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
-
         count: {
             backgroundColor: '#66bb6a',
             padding: '10px',
@@ -49,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InformationBox({packets}) {
     const classes = useStyles();
-
     const count = packets.length
+
     const sizeArray = packets.map((packet) => {
         return packet.size
     })
