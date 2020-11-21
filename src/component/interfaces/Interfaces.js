@@ -38,7 +38,7 @@ export default function Interfaces() {
             {name: name}
         ).then(res => {
             if (res.status === 200) {
-                //TODO: Navigate to EachInterface
+                window.location.replace(window.location.href + "EachInterface")
             }
         })
     };
