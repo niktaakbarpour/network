@@ -50,16 +50,20 @@ export default function InformationBox({packets}) {
     const classes = useStyles();
     const count = packets.length
 
-    const sizeArray = packets.map((packet) => {
-        return packet.size
-    })
+    const sizeArray = packets.map(packet => packet.size)
     let min = 0
     let max = 0
     let avg = 0
+    let sum = 0
     if (sizeArray.length !== 0) {
-        min = sizeArray.reduce((a, b) => Math.min(a, b))
-        max = sizeArray.reduce((a, b) => Math.max(a, b))
-        avg = sizeArray.reduce((pre, current) => pre + current, 0) / sizeArray.length
+        min = sizeArray[0]
+        max = sizeArray[0]
+        sizeArray.forEach((item) => {
+            sum += item
+            min = Math.min(min, item)
+            max = Math.max(max, item)
+        })
+        avg = sum / sizeArray.length
     }
 
     return (
