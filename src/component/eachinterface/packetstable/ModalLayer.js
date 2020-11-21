@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexWrap: "wrap",
+            flexWrap: "wrap"
         },
         paper: {
             padding: '0px 20px 20px 20px'
@@ -34,32 +34,31 @@ const useStyles = makeStyles((theme) => ({
             color: '#2e7d32',
             padding: '8px'
         },
-    container: {
-        maxWidth: '80%',
-        margin: "auto"
-    },
-    filterBy: {
-        padding: "8px",
-    },
-    nested: {
-        paddingLeft: theme.spacing(4)
-    },
-    listItem: {
-        borderLeft: "5px solid #4caf50",
-        borderRight: "5px solid #4caf50",
-        borderBottom: "3px solid #4caf50",
-        borderRadius: '5px',
-        backgroundColor: "#f1f8e9"
-        // backgroundColor: '#f1f8e9'
-    },
-    collapse: {
-        backgroundColor: '#ffffff',
-    },
-    root: {
-        width: '90%',
-        margin: "auto"
-    }
-
+        container: {
+            maxWidth: '80%',
+            margin: "auto"
+        },
+        filterBy: {
+            padding: "8px"
+        },
+        nested: {
+            paddingLeft: theme.spacing(4)
+        },
+        listItem: {
+            borderLeft: "5px solid #4caf50",
+            borderRight: "5px solid #4caf50",
+            borderBottom: "3px solid #4caf50",
+            borderRadius: '5px',
+            backgroundColor: "#f1f8e9"
+            // backgroundColor: '#f1f8e9'
+        },
+        collapse: {
+            backgroundColor: '#ffffff'
+        },
+        root: {
+            width: '90%',
+            margin: "auto"
+        }
     })
 );
 
@@ -97,14 +96,14 @@ export default function ModalLayer(props) {
                     <div className={classes.paper}>
                         <Grid container>
                             <Grid item xs={4}>
-                        <p>Size: size</p>
+                                <p>Size: size</p>
                             </Grid>
                             <Grid item xs={4}>
-                        <p>Date: date</p>
-                        </Grid>
+                                <p>Date: date</p>
+                            </Grid>
                             <Grid item xs={4}>
-                        <p>Protocol: protocol</p>
-                    </Grid>
+                                <p>Protocol: protocol</p>
+                            </Grid>
                         </Grid>
                     </div>
                 </div>
