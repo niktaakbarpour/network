@@ -61,7 +61,7 @@ export default function PacketsTable({filters}) {
 
     return (
         <div>
-                <InformationBox />
+            <InformationBox packets={filteredDate}/>
             <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
