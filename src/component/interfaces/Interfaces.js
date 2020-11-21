@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -7,6 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
 import axios from "axios";
+// import Spinner from "./spinner/Spinner";
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -24,11 +25,14 @@ const useStyles = makeStyles((theme) => ({
 export default function Interfaces() {
     const classes = useStyles();
     const [interfaces, setInterfaces] = React.useState([]);
+    // const [loading, setloading] = useState(false);
 
     useEffect(() => {
+        // setloading(true);
         axios.get("http://25.105.127.25:8080/interface")
             .then(res => {
                 setInterfaces(res.data)
+                // setloading(false);
             })
     }, [])
 
@@ -37,6 +41,7 @@ export default function Interfaces() {
             "http://25.105.127.25:8080/interface",
             {name: name}
         ).then(res => {
+            // setloading(false);
             if (res.status === 200) {
                 window.location.replace(window.location.href + "EachInterface")
             }

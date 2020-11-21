@@ -12,21 +12,21 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: "5px"
         },
 
-        maximumSize: {
+        minimumSize: {
             backgroundColor: '#4caf50',
             padding: '10px',
             flex: '20%',
             margin: '20px',
             borderRadius: "5px"
         },
-        averageSize: {
+        maximumSize: {
             backgroundColor: '#629749',
             padding: '10px',
             flex: '20%',
             margin: '20px',
             borderRadius: "5px"
         },
-        blablabla: {
+        average: {
             backgroundColor: '#8bc34a',
             padding: '10px',
             flex: '20%',
@@ -74,21 +74,21 @@ export default function InformationBox({packets}) {
             </Box>
             <Box
                 boxShadow={3}
-                className={classes.maximumSize}
+                className={classes.minimumSize}
             >
                 Minimum Packet Size
                 <p className={classes.paragraph}>{min}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={classes.averageSize}
+                className={classes.maximumSize}
             >
                 Maximum Packet Size
                 <p className={classes.paragraph}>{max}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={classes.blablabla}
+                className={classes.average}
             >
                 Average Size Of Packets
                 <p className={classes.paragraph}>{avg}</p>

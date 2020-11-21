@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ModalLayer from "./ModalLayer";
 import InformationBox from "./InformationBox";
+import Spinner from "../../interfaces/spinner/Spinner";
 
 const useStyles = makeStyles((theme) => ({
         table: {
@@ -27,6 +28,7 @@ export default function PacketsTable({filters}) {
 
     const [data, setData] = useState([]);
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         // const socket = new WebSocket("")
@@ -40,10 +42,12 @@ export default function PacketsTable({filters}) {
         // socket.onerror = ev => {
         //     console.log(ev)
         // }
+        setLoading(true);
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then((response) => response.json())
             .then((items) => {
                 setData(items);
+                setLoading(false);
             })
     }, []);
 
@@ -61,35 +65,39 @@ export default function PacketsTable({filters}) {
 
     return (
         <div>
-            <InformationBox packets={filteredDate}/>
-            <TableContainer className={classes.tableContainer} component={Paper}>
+            {loading ? <Spinner/> :
+                <div>
+                <InformationBox packets={filteredDate}/>
+                <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="right">Date</TableCell>
-                            <TableCell align="right">Size</TableCell>
-                            <TableCell align="right">Protocol</TableCell>
-                            <TableCell align="right">Source Ip</TableCell>
-                            <TableCell align="right">Destination Ip</TableCell>
-                            <TableCell align="right">More</TableCell>
+                <TableHead>
+                <TableRow>
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Size</TableCell>
+                <TableCell align="right">Protocol</TableCell>
+                <TableCell align="right">Source Ip</TableCell>
+                <TableCell align="right">Destination Ip</TableCell>
+                <TableCell align="right">More</TableCell>
+                </TableRow>
+                </TableHead>
+                <TableBody>
+                {filteredDate.map((packet) => (
+                        <TableRow onClick={handleOpen} key={packet.id}>
+                            <TableCell component="th" scope="row">{packet.userId}</TableCell>
+                            <TableCell align="right">{packet.id}</TableCell>
+                            <TableCell align="right">{packet.title}</TableCell>
+                            <TableCell align="right">{packet.body}</TableCell>
+                            <TableCell align="right"></TableCell>
+                            <TableCell align="right"></TableCell>
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {filteredDate.map((packet) => (
-                                <TableRow onClick={handleOpen} key={packet.id}>
-                                    <TableCell component="th" scope="row">{packet.userId}</TableCell>
-                                    <TableCell align="right">{packet.id}</TableCell>
-                                    <TableCell align="right">{packet.title}</TableCell>
-                                    <TableCell align="right">{packet.body}</TableCell>
-                                    <TableCell align="right"></TableCell>
-                                    <TableCell align="right"></TableCell>
-                                </TableRow>
-                            )
-                        )}
-                        <ModalLayer handleOpen={handleOpen} handleClose={handleClose} open={open}/>
-                    </TableBody>
+                    )
+                )}
+                <ModalLayer handleOpen={handleOpen} handleClose={handleClose} open={open}/>
+                </TableBody>
                 </Table>
-            </TableContainer>
+                </TableContainer>
+                </div>
+            }
         </div>
     );
 }
