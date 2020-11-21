@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ModalLayer(props) {
     const classes = useStyles();
 
-    const {open, handleOpen, handleClose} = props;
+    const {open, handleClose} = props;
     const [openSender, setOpenSender] = React.useState(false);
 
     const toggleSender = () => {

@@ -25,9 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PacketsTable({filters}) {
     const classes = useStyles();
-
-    const [data, setData] = useState([]);
-    const [open, setOpen] = useState(false);
+    const [packets, setPackets] = useState([]);
+    const [openModal, setOpenModal] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -36,8 +35,8 @@ export default function PacketsTable({filters}) {
         //
         // }
         // socket.onmessage = ev => {
-        //     data.push(JSON.parse(ev.data))
-        //     setData(data)
+        //     packets.push(JSON.parse(ev.data))
+        //     setData(packets)
         // }
         // socket.onerror = ev => {
         //     console.log(ev)
@@ -46,20 +45,20 @@ export default function PacketsTable({filters}) {
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then((response) => response.json())
             .then((items) => {
-                setData(items);
+                setPackets(items);
                 setLoading(false);
             })
     }, []);
 
-    const handleOpen = () => {
-        setOpen(true);
+    const handleOpenModal = () => {
+        setOpenModal(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const handleCloseModal = () => {
+        setOpenModal(false);
     };
 
-    const filteredDate = data.filter(value => {
+    const filteredPackets = packets.filter(packet => {
         //TODO
         return true
     })
@@ -68,35 +67,35 @@ export default function PacketsTable({filters}) {
         <div>
             {loading ? <Spinner/> :
                 <div>
-                <InformationBox packets={filteredDate}/>
-                <TableContainer className={classes.tableContainer} component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                <TableRow>
-                <TableCell align="right">Date</TableCell>
-                <TableCell align="right">Size</TableCell>
-                <TableCell align="right">Protocol</TableCell>
-                <TableCell align="right">Source Ip</TableCell>
-                <TableCell align="right">Destination Ip</TableCell>
-                <TableCell align="right">More</TableCell>
-                </TableRow>
-                </TableHead>
-                <TableBody>
-                {filteredDate.map((packet) => (
-                        <TableRow onClick={handleOpen} key={packet.id}>
-                            <TableCell component="th" scope="row">{packet.userId}</TableCell>
-                            <TableCell align="right">{packet.id}</TableCell>
-                            <TableCell align="right">{packet.title}</TableCell>
-                            <TableCell align="right">{packet.body}</TableCell>
-                            <TableCell align="right"></TableCell>
-                            <TableCell align="right"></TableCell>
-                        </TableRow>
-                    )
-                )}
-                <ModalLayer handleOpen={handleOpen} handleClose={handleClose} open={open}/>
-                </TableBody>
-                </Table>
-                </TableContainer>
+                    <InformationBox packets={filteredPackets}/>
+                    <TableContainer className={classes.tableContainer} component={Paper}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="right">Date</TableCell>
+                                    <TableCell align="right">Size</TableCell>
+                                    <TableCell align="right">Protocol</TableCell>
+                                    <TableCell align="right">Source Ip</TableCell>
+                                    <TableCell align="right">Destination Ip</TableCell>
+                                    <TableCell align="right">More</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {filteredPackets.map((packet) => (
+                                        <TableRow onClick={handleOpenModal} key={packet.id}>
+                                            <TableCell component="th" scope="row">{packet.userId}</TableCell>
+                                            <TableCell align="right">{packet.id}</TableCell>
+                                            <TableCell align="right">{packet.title}</TableCell>
+                                            <TableCell align="right">{packet.body}</TableCell>
+                                            <TableCell align="right"></TableCell>
+                                            <TableCell align="right"></TableCell>
+                                        </TableRow>
+                                    )
+                                )}
+                                <ModalLayer handleClose={handleCloseModal} open={openModal}/>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </div>
             }
         </div>
