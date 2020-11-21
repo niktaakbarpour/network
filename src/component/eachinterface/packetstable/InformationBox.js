@@ -3,34 +3,23 @@ import {makeStyles} from '@material-ui/core/styles';
 import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme) => ({
+        box: {
+            padding: '10px',
+            flex: '20%',
+            margin: '20px',
+            borderRadius: "5px"
+        },
         count: {
             backgroundColor: '#66bb6a',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
         },
-
-        maximumSize: {
+        minimumSize: {
             backgroundColor: '#4caf50',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
+        },
+        maximumSize: {
+            backgroundColor: '#629749',
         },
         averageSize: {
-            backgroundColor: '#629749',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
-        },
-        blablabla: {
-            backgroundColor: '#8bc34a',
-            padding: '10px',
-            flex: '20%',
-            margin: '20px',
-            borderRadius: "5px"
+            backgroundColor: '#53863c',
         },
         paragraph: {
             textAlign: "center"
@@ -70,28 +59,28 @@ export default function InformationBox({packets}) {
         <div className={classes.boxContainer}>
             <Box
                 boxShadow={3}
-                className={classes.count}
+                className={[classes.box, classes.count]}
             >
                 Packet Count
                 <p className={classes.paragraph}>{count}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={classes.maximumSize}
+                className={[classes.box, classes.minimumSize]}
             >
                 Minimum Packet Size
                 <p className={classes.paragraph}>{min}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={classes.averageSize}
+                className={[classes.box, classes.maximumSize]}
             >
                 Maximum Packet Size
                 <p className={classes.paragraph}>{max}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={classes.blablabla}
+                className={[classes.box, classes.averageSize]}
             >
                 Average Size Of Packets
                 <p className={classes.paragraph}>{avg}</p>
