@@ -30,9 +30,10 @@ export default function PacketsTable({filters}) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // setLoading(true);
         // const socket = new WebSocket("")
         // socket.onopen = ev => {
-        //
+        // setLoading(false);
         // }
         // socket.onmessage = ev => {
         //     packets.push(JSON.parse(ev.data))
@@ -65,7 +66,42 @@ export default function PacketsTable({filters}) {
 
     return (
         <div>
-            {loading ? <Spinner/> :
+            {loading ?
+                <div>
+                <Spinner/>
+                <div>
+                    <InformationBox packets={filteredPackets}/>
+                    <TableContainer className={classes.tableContainer} component={Paper}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="right">Date</TableCell>
+                                    <TableCell align="right">Size</TableCell>
+                                    <TableCell align="right">Protocol</TableCell>
+                                    <TableCell align="right">Source Ip</TableCell>
+                                    <TableCell align="right">Destination Ip</TableCell>
+                                    <TableCell align="right">More</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {filteredPackets.map((packet) => (
+                                        <TableRow onClick={handleOpenModal} key={packet.id}>
+                                            <TableCell component="th" scope="row">{packet.userId}</TableCell>
+                                            <TableCell align="right">{packet.id}</TableCell>
+                                            <TableCell align="right">{packet.title}</TableCell>
+                                            <TableCell align="right">{packet.body}</TableCell>
+                                            <TableCell align="right"></TableCell>
+                                            <TableCell align="right"></TableCell>
+                                        </TableRow>
+                                    )
+                                )}
+                                <ModalLayer handleClose={handleCloseModal} open={openModal}/>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
+                </div>
+                :
                 <div>
                     <InformationBox packets={filteredPackets}/>
                     <TableContainer className={classes.tableContainer} component={Paper}>

@@ -37,6 +37,7 @@ export default function Interfaces() {
     }, [])
 
     const handleClick = (name) => {
+        // setloading(true);
         axios.post(
             "http://25.105.127.25:8080/interface",
             {name: name}

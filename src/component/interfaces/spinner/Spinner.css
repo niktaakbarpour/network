@@ -21,7 +21,7 @@
 .Loader:before {
     width: 50%;
     height: 50%;
-    background: #1c8231;
+    background: rgba(0,0,0,0.01);
     border-radius: 100% 0 0 0;
     position: absolute;
     top: 0;
@@ -29,7 +29,7 @@
     content: '';
 }
 .Loader:after {
-    background: #1c8231;
+    background: rgba(0,0,0,0.01);
     width: 75%;
     height: 75%;
     border-radius: 50%;
