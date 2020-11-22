@@ -59,28 +59,28 @@ export default function InformationBox({packets}) {
         <div className={classes.boxContainer}>
             <Box
                 boxShadow={3}
-                className={[classes.box, classes.count]}
+                className={`${classes.box} ${classes.count}`}
             >
                 Packet Count
                 <p className={classes.paragraph}>{count}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={[classes.box, classes.minimumSize]}
+                className={`${classes.box} ${classes.minimumSize}`}
             >
                 Minimum Packet Size
                 <p className={classes.paragraph}>{min}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={[classes.box, classes.maximumSize]}
+                className={`${classes.box} ${classes.maximumSize}`}
             >
                 Maximum Packet Size
                 <p className={classes.paragraph}>{max}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={[classes.box, classes.averageSize]}
+                className={`${classes.box} ${classes.averageSize}`}
             >
                 Average Size Of Packets
                 <p className={classes.paragraph}>{avg}</p>
