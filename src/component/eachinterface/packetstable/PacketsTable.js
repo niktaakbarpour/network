@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PacketsTable({filters}) {
     const classes = useStyles();
     const [packets, setPackets] = useState([]);
-    const [openModal, setOpenModal] = useState(false);
+    const [clickedItem, setClickedItem] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -53,12 +53,12 @@ export default function PacketsTable({filters}) {
             })
     }, []);
 
-    const handleOpenModal = () => {
-        setOpenModal(true);
+    const handleOpenModal = (packet) => {
+        setClickedItem(packet);
     };
 
     const handleCloseModal = () => {
-        setOpenModal(false);
+        setClickedItem(null);
     };
 
     const filteredPackets = packets.filter(packet => {
@@ -114,7 +114,7 @@ export default function PacketsTable({filters}) {
                     </TableHead>
                     <TableBody>
                         {filteredPackets.map((packet) => (
-                                <TableRow onClick={handleOpenModal} key={packet.id}>
+                                <TableRow onClick={handleOpenModal.bind(null, packet)} key={packet.id}>
                                     <TableCell component="th" scope="row">{packet.userId}</TableCell>
                                     <TableCell align="right">{packet.id}</TableCell>
                                     <TableCell align="right">{packet.title}</TableCell>
@@ -127,7 +127,7 @@ export default function PacketsTable({filters}) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <ModalLayer handleClose={handleCloseModal} open={openModal}/>
+            <ModalLayer handleClose={handleCloseModal} packet={clickedItem}/>
         </div>
     );
 }

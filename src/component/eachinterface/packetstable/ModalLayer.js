@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
 export default function ModalLayer(props) {
     const classes = useStyles();
 
-    const {open, handleClose} = props;
+    const {handleClose, packet} = props;
     const [fullWidth, setFullWidth] = React.useState(true);
     const [maxWidth, setMaxWidth] = React.useState('md');
     const [openSender, setOpenSender] = React.useState(false);
@@ -112,12 +112,16 @@ export default function ModalLayer(props) {
         setOpenDescriptor(!openDescriptor);
     };
 
+    if (packet == null) {
+        return null
+    }
+
     return (
         <div>
             <Dialog
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
-                open={open}
+                open={true}
                 onClose={handleClose}
             >
                 <div className={classes.closeIcon}>
@@ -133,21 +137,21 @@ export default function ModalLayer(props) {
                             className={`${classes.box} ${classes.size}`}
                         >
                             Size
-                            <p className={classes.paragraph}>size</p>
+                            <p className={classes.paragraph}>{`${packet.size} bytes`}</p>
                         </Box>
                         <Box
                             boxShadow={3}
                             className={`${classes.box} ${classes.date}`}
                         >
                             Date
-                            <p className={classes.paragraph}>date</p>
+                            <p className={classes.paragraph}>{new Date(packet.date).toLocaleString()}</p>
                         </Box>
                         <Box
                             boxShadow={3}
                             className={`${classes.box} ${classes.protocol}`}
                         >
                             Protocol
-                            <p className={classes.paragraph}>protocol</p>
+                            <p className={classes.paragraph}>{packet.protocol}</p>
                         </Box>
                     </div>
                     <div className={classes.container}>
@@ -162,14 +166,18 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openSender} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Ip: ip</p>
+                                            <p>Ip Address: {packet.srcIp} v{packet.ipVersion}</p>
                                         </ListItem>
                                         <ListItem className={classes.nested2}>
-                                            <p>Mac: mac</p>
+                                            <p>Mac Address: {packet.srcMac}</p>
                                         </ListItem>
-                                        <ListItem className={classes.nested}>
-                                            <p>Port: port</p>
-                                        </ListItem>
+                                        {
+                                            packet.srcPort ?
+                                                <ListItem className={classes.nested}>
+                                                    <p>Port: {packet.srcPort.value} ({packet.srcPort.name})</p>
+                                                </ListItem>
+                                                : null
+                                        }
                                     </List>
                                 </Collapse>
                             </Box>
@@ -187,14 +195,18 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openReceiver} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Ip: ip</p>
+                                            <p>Ip Address: {packet.destIp} v{packet.ipVersion}</p>
                                         </ListItem>
                                         <ListItem className={classes.nested2}>
-                                            <p>Mac: mac</p>
+                                            <p>Mac Address: {packet.destMac}</p>
                                         </ListItem>
-                                        <ListItem className={classes.nested}>
-                                            <p>Port: port</p>
-                                        </ListItem>
+                                        {
+                                            packet.destPort ?
+                                                <ListItem className={classes.nested}>
+                                                    <p>Port: {packet.destPort.value} ({packet.destPort.name})</p>
+                                                </ListItem>
+                                                : null
+                                        }
                                     </List>
                                 </Collapse>
                             </Box>
@@ -212,11 +224,15 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openDescriptor} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Descriptor: descriptor</p>
+                                            <p>{packet.descriptor}</p>
                                         </ListItem>
-                                        <ListItem className={classes.nested2}>
-                                            <p>More: more</p>
-                                        </ListItem>
+                                        {
+                                            packet.extraInfo ?
+                                                <ListItem className={classes.nested2}>
+                                                    <p>More: {packet.extraInfo}</p>
+                                                </ListItem>
+                                                : null
+                                        }
                                     </List>
                                 </Collapse>
                             </Box>
