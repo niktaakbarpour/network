@@ -1,12 +1,9 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import CloseIcon from "@material-ui/icons/Close";
-import Box from "@material-ui/core/Box";
-import Grid from '@material-ui/core/Grid';
+import Dialog from '@material-ui/core/Dialog';
+import CloseIcon from '@material-ui/icons/Close';
 import List from "@material-ui/core/List";
+import Box from "@material-ui/core/Box";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
@@ -14,49 +11,80 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 
 const useStyles = makeStyles((theme) => ({
-        modal: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexWrap: "wrap"
-        },
-        paper: {
-            padding: '0px 20px 20px 20px'
-        },
-        insideModal: {
-            backgroundColor: '#f5f5f5',
-            // border: '3px solid #33691e',
-            borderRadius: '8px',
-            boxShadow: theme.shadows[10]
-        },
-        exitIcon: {
+        closeIcon: {
             direction: "rtl",
             color: '#2e7d32',
             padding: '8px'
         },
-        container: {
-            maxWidth: '80%',
-            margin: "auto"
+        form: {
+            display: 'flex',
+            flexDirection: 'column',
+            margin: 'auto',
+            width: 'fit-content',
         },
-        filterBy: {
-            padding: "8px"
+        formControl: {
+            marginTop: theme.spacing(2),
+            minWidth: 120,
+        },
+        formControlLabel: {
+            marginTop: theme.spacing(1),
+        },
+        container: {
+            maxWidth: '100%',
+
+        },
+        Sender: {
+            padding: "8px",
         },
         nested: {
-            paddingLeft: theme.spacing(4)
+            paddingLeft: theme.spacing(4),
+            borderLeft: "5px solid #4caf50",
+            borderTop: "5px solid #ffffff",
+            borderBottom: "5px solid #ffffff",
+            borderRadius: "5%",
+        },
+        nested2: {
+            paddingLeft: theme.spacing(4),
+            borderLeft: "5px solid #4caf50",
         },
         listItem: {
-            borderLeft: "5px solid #4caf50",
-            borderRight: "5px solid #4caf50",
-            borderBottom: "3px solid #4caf50",
-            borderRadius: '5px',
-            backgroundColor: "#f1f8e9"
-            // backgroundColor: '#f1f8e9'
+            // borderRadius: '5px',
+            backgroundColor: "#c5e1a5"
         },
         collapse: {
-            backgroundColor: '#ffffff'
+            backgroundColor: '#fafafa',
         },
+
         root: {
-            width: '90%',
+            width: '85%',
+            margin: "auto"
+        },
+        zero: {
+            marginBottom: '20px'
+        },
+        box: {
+            padding: '10px',
+            flex: '20%',
+            margin: '20px',
+            borderRadius: "5px"
+        },
+        size: {
+            backgroundColor: '#2b9348',
+        },
+        date: {
+            backgroundColor: '#55a630',
+        },
+        protocol: {
+            backgroundColor: '#73a942',
+        },
+        paragraph: {
+            textAlign: "center"
+        },
+        boxContainer: {
+            display: "flex",
+            flexWrap: "wrap",
+            textAlign: "left",
+            maxWidth: "74%",
             margin: "auto"
         }
     })
@@ -66,73 +94,167 @@ export default function ModalLayer(props) {
     const classes = useStyles();
 
     const {open, handleClose} = props;
+    const [fullWidth, setFullWidth] = React.useState(true);
+    const [maxWidth, setMaxWidth] = React.useState('md');
     const [openSender, setOpenSender] = React.useState(false);
+    const [openReceiver, setOpenReceiver] = React.useState(false);
+    const [openDescriptor, setOpenDescriptor] = React.useState(false);
 
     const toggleSender = () => {
         setOpenSender(!openSender);
     };
 
+    const toggleReceiver = () => {
+        setOpenReceiver(!openReceiver);
+    };
+
+    const toggleDescriptor = () => {
+        setOpenDescriptor(!openDescriptor);
+    };
+
     return (
-        <Modal
-            // aria-labelledby="transition-modal-title"
-            // aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-                timeout: 500
-            }}
-        >
-            <Fade in={open}>
-                <div className={classes.insideModal}>
-                    <div className={classes.exitIcon}>
-                        <CloseIcon
-                            onClick={handleClose}
-                            style={{fontSize: 30}}
-                        />
+        <div>
+            <Dialog
+                fullWidth={fullWidth}
+                maxWidth={maxWidth}
+                open={open}
+                onClose={handleClose}
+            >
+                <div className={classes.closeIcon}>
+                    <CloseIcon
+                        onClick={handleClose}
+                        style={{fontSize: 30}}
+                    />
+                </div>
+                <div className={classes.zero}>
+                    <div className={classes.boxContainer}>
+                        <Box
+                            boxShadow={3}
+                            className={[classes.box, classes.size]}
+                        >
+                            Size
+                            <p className={classes.paragraph}>size</p>
+                        </Box>
+                        <Box
+                            boxShadow={3}
+                            className={[classes.box, classes.date]}
+                        >
+                            Date
+                            <p className={classes.paragraph}>date</p>
+                        </Box>
+                        <Box
+                            boxShadow={3}
+                            className={[classes.box, classes.protocol]}
+                        >
+                            Protocol
+                            <p className={classes.paragraph}>protocol</p>
+                        </Box>
                     </div>
-                    <div className={classes.paper}>
-                        <Grid container>
-                            <Grid item xs={4}>
-                                <p>Size: size</p>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <p>Date: date</p>
-                            </Grid>
-                            <Grid item xs={4}>
-                                <p>Protocol: protocol</p>
-                            </Grid>
-                        </Grid>
+                    <div className={classes.container}>
+                        <List className={classes.root}>
+                            <Box boxShadow={3}>
+                                <ListItem className={classes.listItem} button onClick={toggleSender}>
+                                    <ListItemText className={classes.Sender} primary="Sender"/>
+                                    {openSender ? <ExpandLess/> : <ExpandMore/>}
+                                </ListItem>
+                            </Box>
+                            <Box>
+                                <Collapse className={classes.collapse} in={openSender} timeout="auto" unmountOnExit>
+                                    <List component="div" disablePadding>
+                                        <ListItem className={classes.nested}>
+                                            <p>Ip: ip</p>
+                                        </ListItem>
+                                        <ListItem className={classes.nested2}>
+                                            <p>Mac: mac</p>
+                                        </ListItem>
+                                        <ListItem className={classes.nested}>
+                                            <p>Port: port</p>
+                                        </ListItem>
+                                    </List>
+                                </Collapse>
+                            </Box>
+                        </List>
+                    </div>
+                    <div className={classes.container}>
+                        <List className={classes.root}>
+                            <Box boxShadow={3}>
+                                <ListItem className={classes.listItem} button onClick={toggleReceiver}>
+                                    <ListItemText className={classes.Sender} primary="Receiver"/>
+                                    {openReceiver ? <ExpandLess/> : <ExpandMore/>}
+                                </ListItem>
+                            </Box>
+                            <Box boxShadow={2}>
+                                <Collapse className={classes.collapse} in={openReceiver} timeout="auto" unmountOnExit>
+                                    <List component="div" disablePadding>
+                                        <ListItem className={classes.nested}>
+                                            <p>Ip: ip</p>
+                                        </ListItem>
+                                        <ListItem className={classes.nested2}>
+                                            <p>Mac: mac</p>
+                                        </ListItem>
+                                        <ListItem className={classes.nested}>
+                                            <p>Port: port</p>
+                                        </ListItem>
+                                    </List>
+                                </Collapse>
+                            </Box>
+                        </List>
+                    </div>
+                    <div className={classes.container}>
+                        <List className={classes.root}>
+                            <Box boxShadow={3}>
+                                <ListItem className={classes.listItem} button onClick={toggleDescriptor}>
+                                    <ListItemText className={classes.Sender} primary="Descriptor"/>
+                                    {openDescriptor ? <ExpandLess/> : <ExpandMore/>}
+                                </ListItem>
+                            </Box>
+                            <Box boxShadow={2}>
+                                <Collapse className={classes.collapse} in={openDescriptor} timeout="auto" unmountOnExit>
+                                    <List component="div" disablePadding>
+                                        <ListItem className={classes.nested}>
+                                            <p>Descriptor: descriptor</p>
+                                        </ListItem>
+                                        <ListItem className={classes.nested2}>
+                                            <p>More: more</p>
+                                        </ListItem>
+                                    </List>
+                                </Collapse>
+                            </Box>
+                        </List>
                     </div>
                 </div>
-                {/*<div className={classes.container}>*/}
-                {/*    <List className={classes.root}>*/}
-                {/*        <Box boxShadow={3}>*/}
-                {/*            <ListItem className={classes.listItem} button onClick={toggleSender}>*/}
-                {/*                <ListItemText className={classes.filterBy} primary="Sender"/>*/}
-                {/*                {openSender ? <ExpandLess/> : <ExpandMore/>}*/}
-                {/*            </ListItem>*/}
-                {/*        </Box>*/}
-                {/*        <Box boxShadow={2}>*/}
-                {/*            <Collapse className={classes.collapse} in={openSender} timeout="auto" unmountOnExit>*/}
-                {/*                <List component="div" disablePadding>*/}
-                {/*                    <ListItem className={classes.nested}>*/}
-                {/*                        <p>IP</p>*/}
-                {/*                    </ListItem>*/}
-                {/*                    <ListItem className={classes.nested}>*/}
-                {/*                        <p>MAC</p>*/}
-                {/*                    </ListItem>*/}
-                {/*                    <ListItem className={classes.nested}>*/}
-                {/*                        <p>port</p>*/}
-                {/*                    </ListItem>*/}
-                {/*                </List>*/}
-                {/*            </Collapse>*/}
-                {/*        </Box>*/}
-                {/*    </List>*/}
-                {/*</div>*/}
-            </Fade>
-        </Modal>
+                {/*<DialogContent>*/}
+                {/*    <DialogContentText>*/}
+                {/*        You can set my maximum width and whether to adapt or not.*/}
+                {/*    </DialogContentText>*/}
+                {/*    <form className={classes.form} noValidate>*/}
+                {/*<FormControl className={classes.formControl}>*/}
+                {/*    <InputLabel htmlFor="max-width">maxWidth</InputLabel>*/}
+                {/*    <Select*/}
+                {/*        autoFocus*/}
+                {/*        value={maxWidth}*/}
+                {/*        onChange={handleMaxWidthChange}*/}
+                {/*        inputProps={{*/}
+                {/*            name: 'max-width',*/}
+                {/*            id: 'max-width',*/}
+                {/*        }}*/}
+                {/*    >*/}
+                {/*        <MenuItem value={false}>false</MenuItem>*/}
+                {/*        <MenuItem value="xs">xs</MenuItem>*/}
+                {/*        <MenuItem value="sm">sm</MenuItem>*/}
+                {/*        <MenuItem value="md">md</MenuItem>*/}
+                {/*        <MenuItem value="lg">lg</MenuItem>*/}
+                {/*        <MenuItem value="xl">xl</MenuItem>*/}
+                {/*    </Select>*/}
+                {/*</FormControl>*/}
+                {/*<FormControlLabel*/}
+                {/*    className={classes.formControlLabel}*/}
+                {/*    control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}*/}
+                {/*    label="Full width"*/}
+                {/*/>*/}
+                {/*    </form>*/}
+                {/*</DialogContent>*/}
+            </Dialog>
+        </div>
     );
 }

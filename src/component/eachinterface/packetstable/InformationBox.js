@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
             display: "flex",
             flexWrap: "wrap",
             textAlign: "left",
-            boxSizing: "borderBox",
             maxWidth: "74%",
             margin: "auto"
         }
