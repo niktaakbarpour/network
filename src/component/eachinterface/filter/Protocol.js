@@ -85,6 +85,9 @@ export default function Protocol({currentValue, setParentState}) {
 
 const protocols = [
     "All",
+    "TCP",
     "UDP",
-    "TCP"
+    "ICMPV4",
+    "IGMP",
+    "ARP"
 ]

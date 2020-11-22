@@ -51,6 +51,7 @@ export default function Filters({setParentState}) {
     const [filters, setFilters] = React.useState({
         layer: "All",
         protocol: "All",
+        ipVersion: 4,
         sourceIp: "",
         destinationIp: "",
         sourcePort: "",
@@ -77,37 +78,37 @@ export default function Filters({setParentState}) {
         <div className={classes.container}>
             <List className={classes.root}>
                 <Box boxShadow={3}>
-                <ListItem className={classes.listItem} button onClick={toggleFilters}>
-                    <ListItemText className={classes.filterBy} primary="Filter By"/>
-                    {openFilter ? <ExpandLess/> : <ExpandMore/>}
-                </ListItem>
+                    <ListItem className={classes.listItem} button onClick={toggleFilters}>
+                        <ListItemText className={classes.filterBy} primary="Filter By"/>
+                        {openFilter ? <ExpandLess/> : <ExpandMore/>}
+                    </ListItem>
                 </Box>
                 <Box boxShadow={2}>
-                <Collapse className={classes.collapse} in={openFilter} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem className={classes.nested}>
-                            <Layer currentValue={filters.layer} setParentState={handleFiltersChanged}/>
-                        </ListItem>
-                        <ListItem className={classes.nested}>
-                            <Protocol currentValue={filters.protocol} setParentState={handleFiltersChanged}/>
-                        </ListItem>
-                        <ListItem className={classes.nested}>
-                            <IpAddress currentValue={{
-                                sourceIp: filters.sourceIp,
-                                destinationIp: filters.destinationIp
-                            }} setParentState={handleFiltersChanged}/>
-                        </ListItem>
-                        <ListItem className={classes.nested}>
-                            <PortNumber currentValue={{
-                                sourcePort: filters.sourcePort,
-                                destinationPort: filters.destinationPort
-                            }} setParentState={handleFiltersChanged}/>
-                        </ListItem>
-                        <ListItem className={classes.nested}>
-                            <CustomizedButton applyFilterHandler={handleFiltersApplied}/>
-                        </ListItem>
-                    </List>
-                </Collapse>
+                    <Collapse className={classes.collapse} in={openFilter} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem className={classes.nested}>
+                                <Layer currentValue={filters.layer} setParentState={handleFiltersChanged}/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <Protocol currentValue={filters.protocol} setParentState={handleFiltersChanged}/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <IpAddress currentValue={{
+                                    sourceIp: filters.sourceIp,
+                                    destinationIp: filters.destinationIp
+                                }} setParentState={handleFiltersChanged}/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <PortNumber currentValue={{
+                                    sourcePort: filters.sourcePort,
+                                    destinationPort: filters.destinationPort
+                                }} setParentState={handleFiltersChanged}/>
+                            </ListItem>
+                            <ListItem className={classes.nested}>
+                                <CustomizedButton applyFilterHandler={handleFiltersApplied}/>
+                            </ListItem>
+                        </List>
+                    </Collapse>
                 </Box>
             </List>
         </div>

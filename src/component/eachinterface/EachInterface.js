@@ -6,6 +6,7 @@ function Page() {
     const [filters, setFilters] = React.useState({
         layer: "All",
         protocol: "All",
+        ipVersion: 4,
         sourceIp: "",
         destinationIp: "",
         sourcePort: "",

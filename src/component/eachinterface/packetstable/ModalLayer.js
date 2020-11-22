@@ -130,21 +130,21 @@ export default function ModalLayer(props) {
                     <div className={classes.boxContainer}>
                         <Box
                             boxShadow={3}
-                            className={[classes.box, classes.size]}
+                            className={`${classes.box} ${classes.size}`}
                         >
                             Size
                             <p className={classes.paragraph}>size</p>
                         </Box>
                         <Box
                             boxShadow={3}
-                            className={[classes.box, classes.date]}
+                            className={`${classes.box} ${classes.date}`}
                         >
                             Date
                             <p className={classes.paragraph}>date</p>
                         </Box>
                         <Box
                             boxShadow={3}
-                            className={[classes.box, classes.protocol]}
+                            className={`${classes.box} ${classes.protocol}`}
                         >
                             Protocol
                             <p className={classes.paragraph}>protocol</p>

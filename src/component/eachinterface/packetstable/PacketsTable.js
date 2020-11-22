@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import ModalLayer from "./ModalLayer";
 import InformationBox from "./InformationBox";
 import Spinner from "../../interfaces/spinner/Spinner";
+// import * as SockJS from 'sockjs-client'
+// import Stomp from 'stompjs'
 
 const useStyles = makeStyles((theme) => ({
         table: {
@@ -30,17 +32,18 @@ export default function PacketsTable({filters}) {
 
     useEffect(() => {
         // setLoading(true);
-        // const socket = new WebSocket("")
-        // socket.onopen = ev => {
+        // const socket = new SockJS('http://25.105.127.25:8080/gs-guide-websocket');
+        // const stompClient = Stomp.over(socket);
+        // stompClient.allowCredentials = false
+        // stompClient.connect({}, function (frame) {
         //     setLoading(false);
-        // }
-        // socket.onmessage = ev => {
-        //     packets.push(JSON.parse(ev.data))
-        //     setPackets(packets)
-        // }
-        // socket.onerror = ev => {
-        //     console.log(ev)
-        // }
+        //     console.log('Connected: ' + frame);
+        //     stompClient.subscribe('ws://25.105.127.25:8080/network/packet', function (message) {
+        //         packets.push(JSON.parse(message.body))
+        //         setPackets(packets)
+        //     });
+        // });
+
         setLoading(true);
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then((response) => response.json())
@@ -59,44 +62,72 @@ export default function PacketsTable({filters}) {
     };
 
     const filteredPackets = packets.filter(packet => {
-        //TODO
+        // Layer Filter
+        if (filters.layer === "Application") {
+            if (packet.srcPort == null && packet.dstPort == null) {
+                return false
+            }
+        } else if (filters.layer === "Network") {
+            if (packet.srcPort != null && packet.dstPort != null) {
+                return false
+            }
+        }
+
+        // Protocol
+        if (filters.protocol !== "All" && filters.protocol !== packet.protocol) {
+            return false
+        }
+
+        // Ip Address
+        if (filters.sourceIp && (filters.ipVersion !== packet.ipVersion || filters.sourceIp !== packet.srcIp)) {
+            return false
+        }
+        if (filters.destinationIp && (filters.ipVersion !== packet.ipVersion || filters.destinationIp !== packet.dstIp)) {
+            return false
+        }
+
+        // Port Number
+        if (filters.sourcePort && filters.sourcePort !== packet.srcPort) {
+            return false
+        }
+        if (filters.destinationPort && filters.destinationPort !== packet.dstPort) {
+            return false
+        }
         return true
     })
 
     return (
         <div>
-            {loading ? <Spinner/> : <div/>}
-            <div>
-                <InformationBox packets={filteredPackets}/>
-                <TableContainer className={classes.tableContainer} component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="right">Date</TableCell>
-                                <TableCell align="right">Size</TableCell>
-                                <TableCell align="right">Protocol</TableCell>
-                                <TableCell align="right">Source Ip</TableCell>
-                                <TableCell align="right">Destination Ip</TableCell>
-                                <TableCell align="right">More</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {filteredPackets.map((packet) => (
-                                    <TableRow onClick={handleOpenModal} key={packet.id}>
-                                        <TableCell component="th" scope="row">{packet.userId}</TableCell>
-                                        <TableCell align="right">{packet.id}</TableCell>
-                                        <TableCell align="right">{packet.title}</TableCell>
-                                        <TableCell align="right">{packet.body}</TableCell>
-                                        <TableCell align="right"></TableCell>
-                                        <TableCell align="right"></TableCell>
-                                    </TableRow>
-                                )
-                            )}
-                            <ModalLayer handleClose={handleCloseModal} open={openModal}/>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
+            {loading ? <Spinner/> : null}
+            <InformationBox packets={filteredPackets}/>
+            <TableContainer className={classes.tableContainer} component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="right">Date</TableCell>
+                            <TableCell align="right">Size</TableCell>
+                            <TableCell align="right">Protocol</TableCell>
+                            <TableCell align="right">Source Ip</TableCell>
+                            <TableCell align="right">Destination Ip</TableCell>
+                            <TableCell align="right">More</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {filteredPackets.map((packet) => (
+                                <TableRow onClick={handleOpenModal} key={packet.id}>
+                                    <TableCell component="th" scope="row">{packet.userId}</TableCell>
+                                    <TableCell align="right">{packet.id}</TableCell>
+                                    <TableCell align="right">{packet.title}</TableCell>
+                                    <TableCell align="right">{packet.body}</TableCell>
+                                    <TableCell align="right"></TableCell>
+                                    <TableCell align="right"></TableCell>
+                                </TableRow>
+                            )
+                        )}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <ModalLayer handleClose={handleCloseModal} open={openModal}/>
         </div>
     );
 }
