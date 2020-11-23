@@ -51,7 +51,8 @@ export default function PacketsTable({filters}) {
             setLoading(false);
             console.log('Connected: ' + frame);
             stompClient.subscribe('/network/packet', function (message) {
-                packets.push(JSON.parse(message.body))
+                const packet = JSON.parse(message.body)
+                packets.push(packet)
                 setPackets(packets)
             });
         });
