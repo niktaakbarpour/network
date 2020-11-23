@@ -65,12 +65,6 @@ export default function IpAddress({currentValue, setParentState}) {
 
     const classes = useStyles();
 
-    const [value, setValue] = React.useState("IPV4");
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-
     const handleIpChanged = (ev) => {
         setParentState({
             key: ev.target.name,
@@ -78,16 +72,23 @@ export default function IpAddress({currentValue, setParentState}) {
         })
     }
 
+    const handleIpVersionChanged = (ev) => {
+        setParentState({
+            key: ev.target.name,
+            value: +ev.target.value
+        })
+    }
 
     return (
         <div className={classes.ipAddressContainer}>
             <p className={classes.ipAddress}>IP Address:</p>
             <div className={classes.radioButtonContainer}>
                 <FormLabel component="legend">IP Version</FormLabel>
-                <RadioGroup aria-label="IpVersion" name="version" value={value} onChange={handleChange}>
+                <RadioGroup aria-label="IpVersion" name="ipVersion" value={currentValue.ipVersion}
+                            onChange={handleIpVersionChanged}>
                     <ThemeProvider theme={theme}>
-                        <FormControlLabel value="IPV4" control={<Radio/>} label="IPV4"/>
-                        <FormControlLabel value="IPV6" control={<Radio/>} label="IPV6"/>
+                        <FormControlLabel value={4} control={<Radio/>} label="IPV4"/>
+                        <FormControlLabel value={6} control={<Radio/>} label="IPV6"/>
                     </ThemeProvider>
                 </RadioGroup>
             </div>
