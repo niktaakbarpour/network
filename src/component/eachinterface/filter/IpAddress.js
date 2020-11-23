@@ -90,8 +90,8 @@ export default function IpAddress({currentValue, setParentState}) {
                     <ThemeProvider theme={theme}>
                         <RadioGroup aria-label="IpVersion" name="ipVersion" value={currentValue.ipVersion}
                                     onChange={handleIpVersionChanged}>
-                            <FormControlLabel value={4} control={<Radio/>} label="IPV4"/>
-                            <FormControlLabel value={6} control={<Radio/>} label="IPV6"/>
+                            <FormControlLabel value={4} control={<Radio/>} label="IPv4"/>
+                            <FormControlLabel value={6} control={<Radio/>} label="IPv6"/>
                         </RadioGroup>
                     </ThemeProvider>
                 </div>

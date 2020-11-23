@@ -51,7 +51,7 @@ export default function InformationBox({packets}) {
             min = Math.min(min, item)
             max = Math.max(max, item)
         })
-        avg = sum / sizeArray.length
+        avg = (sum / sizeArray.length).toFixed(2)
     }
 
     return (
