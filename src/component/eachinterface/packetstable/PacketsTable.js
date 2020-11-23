@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         tableContainer: {
             margin: "auto",
             width: '90%',
-            marginBottom:"100px"
+            marginBottom: "100px"
         },
         select: {
             '&:hover': {
@@ -50,7 +50,7 @@ export default function PacketsTable({filters}) {
         stompClient.connect({}, function (frame) {
             setLoading(false);
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/ws/network/packet', function (message) {
+            stompClient.subscribe('/network/packet', function (message) {
                 packets.push(JSON.parse(message.body))
                 setPackets(packets)
             });
