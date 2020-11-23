@@ -157,8 +157,8 @@ export default function ModalLayer(props) {
                             <p className={classes.paragraph}>{packet.protocol}</p>
                         </Box>
 
-                        {/*{*/}
-                        {/*    packet.extraInfo ?*/}
+                        {
+                            packet.extraInfo ?
                                 <Box
                                     boxShadow={3}
                                     className={`${classes.box} ${classes.more}`}
@@ -166,8 +166,8 @@ export default function ModalLayer(props) {
                                     More
                                     <p className={classes.paragraph}>{packet.extraInfo}</p>
                                 </Box>
-                        {/*        : null*/}
-                        {/*}*/}
+                                : null
+                        }
 
                     </div>
                     <div className={classes.container}>
