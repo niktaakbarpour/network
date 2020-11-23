@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
         },
         tableContainer: {
             margin: "auto",
-            width: '90%'
+            width: '90%',
+            marginBottom:"100px"
         },
         select: {
             '&:hover': {
@@ -116,24 +117,26 @@ export default function PacketsTable({filters}) {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow className={classes.title}>
-                            <TableCell align="right">Date</TableCell>
-                            <TableCell align="right">Size</TableCell>
-                            <TableCell align="right">Protocol</TableCell>
-                            <TableCell align="right">Source Ip</TableCell>
-                            <TableCell align="right">Destination Ip</TableCell>
-                            <TableCell align="right">More</TableCell>
+                            <TableCell align="center">#</TableCell>
+                            <TableCell align="center">Date</TableCell>
+                            <TableCell align="center">Size (bytes)</TableCell>
+                            <TableCell align="center">Protocol</TableCell>
+                            <TableCell align="center">Source Ip</TableCell>
+                            <TableCell align="center">Destination Ip</TableCell>
+                            <TableCell align="center">Info</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {filteredPackets.map((packet) => (
                                 <TableRow className={classes.select} onClick={handleOpenModal.bind(null, packet)}
                                           key={packet.id}>
-                                    <TableCell component="th" scope="row">{packet.userId}</TableCell>
-                                    <TableCell align="right">{packet.id}</TableCell>
-                                    <TableCell align="right">{packet.title}</TableCell>
-                                    <TableCell align="right">{packet.body}</TableCell>
-                                    <TableCell align="right"></TableCell>
-                                    <TableCell align="right"></TableCell>
+                                    <TableCell align="center" component="th" scope="row">{packet.id}</TableCell>
+                                    <TableCell align="center">{new Date(packet.date).toLocaleString()}</TableCell>
+                                    <TableCell align="center">{packet.size}</TableCell>
+                                    <TableCell align="center">{packet.protocol}</TableCell>
+                                    <TableCell align="center">{packet.srcIp}</TableCell>
+                                    <TableCell align="center">{packet.dstIp}</TableCell>
+                                    <TableCell align="left">{packet.extraInfo}</TableCell>
                                 </TableRow>
                             )
                         )}
