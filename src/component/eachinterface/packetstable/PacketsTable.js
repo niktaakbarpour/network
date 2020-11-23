@@ -20,6 +20,18 @@ const useStyles = makeStyles((theme) => ({
         tableContainer: {
             margin: "auto",
             width: '90%'
+        },
+        select: {
+            '&:hover': {
+                backgroundColor: '#fafafa',
+                cursor: 'pointer'
+            },
+            '&:active': {
+                backgroundColor: '#eeeeee'
+            },
+        },
+        title: {
+            backgroundColor: '#a7c957'
         }
     })
 );
@@ -103,7 +115,7 @@ export default function PacketsTable({filters}) {
             <TableContainer className={classes.tableContainer} component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
-                        <TableRow>
+                        <TableRow className={classes.title}>
                             <TableCell align="right">Date</TableCell>
                             <TableCell align="right">Size</TableCell>
                             <TableCell align="right">Protocol</TableCell>
@@ -114,7 +126,8 @@ export default function PacketsTable({filters}) {
                     </TableHead>
                     <TableBody>
                         {filteredPackets.map((packet) => (
-                                <TableRow onClick={handleOpenModal.bind(null, packet)} key={packet.id}>
+                                <TableRow className={classes.select} onClick={handleOpenModal.bind(null, packet)}
+                                          key={packet.id}>
                                     <TableCell component="th" scope="row">{packet.userId}</TableCell>
                                     <TableCell align="right">{packet.id}</TableCell>
                                     <TableCell align="right">{packet.title}</TableCell>
