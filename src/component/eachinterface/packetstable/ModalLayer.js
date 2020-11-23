@@ -65,29 +65,29 @@ const useStyles = makeStyles((theme) => ({
         box: {
             padding: '10px',
             flex: '20%',
-            margin: '8px',
+            margin: '15px',
             borderRadius: "5px"
         },
         size: {
-            backgroundColor: '#2b9348',
+            backgroundColor: '#6a994e',
         },
         date: {
             backgroundColor: '#55a630',
         },
         protocol: {
-            backgroundColor: '#73a942',
+            backgroundColor: '#43a047',
         },
         more: {
-            backgroundColor: "#6a994e",
+            backgroundColor: "#2b9348",
         },
         paragraph: {
             textAlign: "center"
         },
         boxContainer: {
             display: "flex",
-            flexWrap: "nowrap",
+            flexWrap: "wrap",
             textAlign: "left",
-            maxWidth: "90%",
+            maxWidth: "88%",
             margin: "auto"
         }
     })
@@ -157,8 +157,8 @@ export default function ModalLayer(props) {
                             <p className={classes.paragraph}>{packet.protocol}</p>
                         </Box>
 
-                        {
-                            packet.extraInfo ?
+                        {/*{*/}
+                        {/*    packet.extraInfo ?*/}
                                 <Box
                                     boxShadow={3}
                                     className={`${classes.box} ${classes.more}`}
@@ -166,8 +166,8 @@ export default function ModalLayer(props) {
                                     More
                                     <p className={classes.paragraph}>{packet.extraInfo}</p>
                                 </Box>
-                                : null
-                        }
+                        {/*        : null*/}
+                        {/*}*/}
 
                     </div>
                     <div className={classes.container}>
