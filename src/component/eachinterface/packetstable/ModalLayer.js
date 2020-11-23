@@ -154,7 +154,7 @@ export default function ModalLayer(props) {
                             className={`${classes.box} ${classes.date}`}
                         >
                             Date
-                            <p className={classes.paragraph}>{new Date(packet.date).toLocaleString()}</p>
+                            <p className={classes.paragraph}>{packet.date}</p>
                         </Box>
                         <Box
                             boxShadow={3}

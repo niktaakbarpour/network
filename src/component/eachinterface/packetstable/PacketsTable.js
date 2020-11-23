@@ -120,10 +120,11 @@ export default function PacketsTable({filters}) {
                     </TableHead>
                     <TableBody>
                         {filteredPackets.map((packet) => (
-                                <TableRow className={classes.select} onClick={handleOpenModal.bind(null, packet)}
-                                          key={packet.id}>
+                                <TableRow key={packet.id} className={classes.select}
+                                          onClick={handleOpenModal.bind(null, packet)}
+                                >
                                     <TableCell align="center" component="th" scope="row">{packet.id}</TableCell>
-                                    <TableCell align="center">{new Date(packet.date).toLocaleString()}</TableCell>
+                                    <TableCell align="center">{packet.date}</TableCell>
                                     <TableCell align="center">{packet.size}</TableCell>
                                     <TableCell align="center">{packet.protocol}</TableCell>
                                     <TableCell align="center">{packet.srcIp}</TableCell>
