@@ -68,12 +68,6 @@ export default function IpAddress({currentValue, setParentState}) {
 
     const classes = useStyles();
 
-    const [value, setValue] = React.useState("IPV4");
-
-    const handleChange = (event) => {
-        setValue(event.target.value);
-    };
-
     const handleIpChanged = (ev) => {
         setParentState({
             key: ev.target.name,
@@ -81,6 +75,12 @@ export default function IpAddress({currentValue, setParentState}) {
         })
     }
 
+    const handleIpVersionChanged = (ev) => {
+        setParentState({
+            key: ev.target.name,
+            value: +ev.target.value
+        })
+    }
 
     return (
         <div className={classes.ipAddressContainer}>

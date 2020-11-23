@@ -94,6 +94,7 @@ export default function Filters({setParentState}) {
                             </ListItem>
                             <ListItem className={classes.nested}>
                                 <IpAddress currentValue={{
+                                    ipVersion: filters.ipVersion,
                                     sourceIp: filters.sourceIp,
                                     destinationIp: filters.destinationIp
                                 }} setParentState={handleFiltersChanged}/>
