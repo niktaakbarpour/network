@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         ipAddress: {
             display: "flex",
             marginLeft: "20px",
-            marginBottom: "20px",
+            marginBottom: "20px"
         },
         form: {
             '& > *': {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         radioButtonContainer: {
             display: "grid",
             marginLeft: "30px"
-        },
+        }
     })
 );
 
@@ -38,7 +38,7 @@ const CssTextField = withStyles({
         },
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
-                borderColor: '#aed581',
+                borderColor: '#aed581'
             },
             '&.Mui-focused fieldset': {
                 borderColor: '#9ccc65'
@@ -52,15 +52,15 @@ const theme = createMuiTheme({
         MuiRadio: {
             colorSecondary: {
                 '&.Mui-checked': {
-                    color: 'green',
-                },
-            },
+                    color: 'green'
+                }
+            }
         },
         MuiFormGroup: {
             root: {
                 flexDirection: "row"
-            },
-        },
+            }
+        }
     }
 });
 
@@ -88,9 +88,10 @@ export default function IpAddress({currentValue, setParentState}) {
                 <p>IP Address:</p>
                 <div className={classes.radioButtonContainer}>
                     <ThemeProvider theme={theme}>
-                        <RadioGroup aria-label="IpVersion" name="version" value={value} onChange={handleChange}>
-                            <FormControlLabel value="IPV4" control={<Radio/>} label="IPV4"/>
-                            <FormControlLabel value="IPV6" control={<Radio/>} label="IPV6"/>
+                        <RadioGroup aria-label="IpVersion" name="ipVersion" value={currentValue.ipVersion}
+                                    onChange={handleIpVersionChanged}>
+                            <FormControlLabel value={4} control={<Radio/>} label="IPV4"/>
+                            <FormControlLabel value={6} control={<Radio/>} label="IPV6"/>
                         </RadioGroup>
                     </ThemeProvider>
                 </div>
