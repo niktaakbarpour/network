@@ -1,6 +1,10 @@
 import React from "react";
-import {makeStyles, withStyles} from "@material-ui/core/styles";
+import {createMuiTheme, makeStyles, ThemeProvider, withStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import FormLabel from "@material-ui/core/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
         ipAddressContainer: {
@@ -9,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
         },
         ipAddress: {
             display: "block",
-            marginLeft: "20px"
+            marginLeft: "20px",
+            marginBottom: "unset"
         },
         form: {
             '& > *': {
@@ -19,6 +24,11 @@ const useStyles = makeStyles((theme) => ({
             },
             justifyContent: "space-evenly",
             display: "flex"
+        },
+        radioButtonContainer: {
+            display: "grid",
+            justifyContent: "end",
+            marginRight: "60px"
         }
     })
 );
@@ -31,19 +41,35 @@ const CssTextField = withStyles({
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
                 borderColor: '#aed581',
-                // border: "2px solid #4db6ac",
-                // backgroundColor: 'white'
             },
             '&.Mui-focused fieldset': {
-                // border: "2px solid #4db6ac",
                 borderColor: '#9ccc65'
             }
         }
     }
 })(TextField);
 
+const theme = createMuiTheme({
+    overrides: {
+        MuiRadio: {
+            colorSecondary: {
+                '&.Mui-checked': {
+                    color: 'green',
+                },
+            },
+        },
+    }
+});
+
 export default function IpAddress({currentValue, setParentState}) {
+
     const classes = useStyles();
+
+    const [value, setValue] = React.useState("IPV4");
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+    };
 
     const handleIpChanged = (ev) => {
         setParentState({
@@ -52,9 +78,19 @@ export default function IpAddress({currentValue, setParentState}) {
         })
     }
 
+
     return (
         <div className={classes.ipAddressContainer}>
             <p className={classes.ipAddress}>IP Address:</p>
+            <div className={classes.radioButtonContainer}>
+                <FormLabel component="legend">IP Version</FormLabel>
+                <RadioGroup aria-label="IpVersion" name="version" value={value} onChange={handleChange}>
+                    <ThemeProvider theme={theme}>
+                        <FormControlLabel value="IPV4" control={<Radio/>} label="IPV4"/>
+                        <FormControlLabel value="IPV6" control={<Radio/>} label="IPV6"/>
+                    </ThemeProvider>
+                </RadioGroup>
+            </div>
             <form className={classes.form} noValidate autoComplete="off">
                 <CssTextField
                     onChange={handleIpChanged}
@@ -73,6 +109,7 @@ export default function IpAddress({currentValue, setParentState}) {
                     type='search'
                 />
             </form>
+
         </div>
     )
 }
