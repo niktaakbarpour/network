@@ -10,8 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import ModalLayer from "./ModalLayer";
 import InformationBox from "./InformationBox";
 import Spinner from "../../interfaces/spinner/Spinner";
-// import * as SockJS from 'sockjs-client'
-// import Stomp from 'stompjs'
+import * as SockJS from 'sockjs-client'
+import Stomp from 'stompjs'
 
 const useStyles = makeStyles((theme) => ({
         table: {
@@ -44,26 +44,18 @@ export default function PacketsTable({filters}) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // setLoading(true);
-        // const socket = new SockJS('http://25.105.127.25:8080/gs-guide-websocket');
-        // const stompClient = Stomp.over(socket);
-        // stompClient.allowCredentials = false
-        // stompClient.connect({}, function (frame) {
-        //     setLoading(false);
-        //     console.log('Connected: ' + frame);
-        //     stompClient.subscribe('ws://25.105.127.25:8080/network/packet', function (message) {
-        //         packets.push(JSON.parse(message.body))
-        //         setPackets(packets)
-        //     });
-        // });
-
         setLoading(true);
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then((response) => response.json())
-            .then((items) => {
-                setPackets(items);
-                setLoading(false);
-            })
+        const socket = new SockJS('/gs-guide-websocket');
+        const stompClient = Stomp.over(socket);
+        stompClient.allowCredentials = false
+        stompClient.connect({}, function (frame) {
+            setLoading(false);
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/ws/network/packet', function (message) {
+                packets.push(JSON.parse(message.body))
+                setPackets(packets)
+            });
+        });
     }, []);
 
     const handleOpenModal = (packet) => {

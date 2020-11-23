@@ -29,7 +29,7 @@ export default function Interfaces() {
 
     useEffect(() => {
         // setloading(true);
-        axios.get("http://25.105.127.25:8080/interface")
+        axios.get("/interface")
             .then(res => {
                 setInterfaces(res.data)
                 // setloading(false);
@@ -39,7 +39,7 @@ export default function Interfaces() {
     const handleClick = (name) => {
         // setloading(true);
         axios.post(
-            "http://25.105.127.25:8080/interface",
+            "/interface",
             {name: name}
         ).then(res => {
             // setloading(false);
