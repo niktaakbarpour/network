@@ -71,7 +71,7 @@ export default function IpAddress({currentValue, setParentState}) {
     const handleIpChanged = (ev) => {
         setParentState({
             key: ev.target.name,
-            value: ev.target.value
+            value: ev.target.value.trim()
         })
     }
 

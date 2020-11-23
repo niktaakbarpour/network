@@ -99,10 +99,10 @@ export default function PacketsTable({filters}) {
         }
 
         // Port Number
-        if (filters.sourcePort && filters.sourcePort !== packet.srcPort) {
+        if (filters.sourcePort && (packet.srcPort == null || filters.sourcePort !== packet.srcPort.value.toString())) {
             return false
         }
-        if (filters.destinationPort && filters.destinationPort !== packet.dstPort) {
+        if (filters.destinationPort && (packet.dstPort == null || filters.destinationPort !== packet.dstPort.value.toString())) {
             return false
         }
         return true
