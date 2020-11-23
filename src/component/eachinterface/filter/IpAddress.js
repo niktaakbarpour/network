@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
-import FormLabel from "@material-ui/core/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
         ipAddressContainer: {
@@ -12,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
             width: "inherit"
         },
         ipAddress: {
-            display: "block",
+            display: "flex",
             marginLeft: "20px",
-            marginBottom: "unset"
+            marginBottom: "20px",
         },
         form: {
             '& > *': {
@@ -27,9 +26,8 @@ const useStyles = makeStyles((theme) => ({
         },
         radioButtonContainer: {
             display: "grid",
-            justifyContent: "end",
-            marginRight: "60px"
-        }
+            marginLeft: "30px"
+        },
     })
 );
 
@@ -58,6 +56,11 @@ const theme = createMuiTheme({
                 },
             },
         },
+        MuiFormGroup: {
+            root: {
+                flexDirection: "row"
+            },
+        },
     }
 });
 
@@ -81,15 +84,16 @@ export default function IpAddress({currentValue, setParentState}) {
 
     return (
         <div className={classes.ipAddressContainer}>
-            <p className={classes.ipAddress}>IP Address:</p>
-            <div className={classes.radioButtonContainer}>
-                <FormLabel component="legend">IP Version</FormLabel>
-                <RadioGroup aria-label="IpVersion" name="version" value={value} onChange={handleChange}>
+            <div className={classes.ipAddress}>
+                <p>IP Address:</p>
+                <div className={classes.radioButtonContainer}>
                     <ThemeProvider theme={theme}>
-                        <FormControlLabel value="IPV4" control={<Radio/>} label="IPV4"/>
-                        <FormControlLabel value="IPV6" control={<Radio/>} label="IPV6"/>
+                        <RadioGroup aria-label="IpVersion" name="version" value={value} onChange={handleChange}>
+                            <FormControlLabel value="IPV4" control={<Radio/>} label="IPV4"/>
+                            <FormControlLabel value="IPV6" control={<Radio/>} label="IPV6"/>
+                        </RadioGroup>
                     </ThemeProvider>
-                </RadioGroup>
+                </div>
             </div>
             <form className={classes.form} noValidate autoComplete="off">
                 <CssTextField
