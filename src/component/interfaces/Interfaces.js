@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import SendIcon from '@material-ui/icons/Send';
 import axios from "axios";
-// import Spinner from "./spinner/Spinner";
+import Spinner from "./spinner/Spinner";
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -22,56 +22,58 @@ const useStyles = makeStyles((theme) => ({
     })
 );
 
-export default function Interfaces() {
+export default function Interfaces(props) {
     const classes = useStyles();
     const [interfaces, setInterfaces] = React.useState([]);
-    // const [loading, setloading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // setloading(true);
         axios.get("/interface")
             .then(res => {
                 setInterfaces(res.data)
-                // setloading(false);
+                setLoading(false);
             })
     }, [])
 
     const handleClick = (name) => {
-        // setloading(true);
+        setLoading(true);
         axios.post(
             "/interface",
             {name: name}
         ).then(res => {
-            // setloading(false);
+            setLoading(false);
             if (res.status === 200) {
-                window.location.replace(window.location.href + "EachInterface")
+                props.history.push("/EachInterface");
             }
         })
     };
 
     return (
-        <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            subheader={
-                <ListSubheader component="div" id="nested-list-subheader">
-                    Network Interfaces
-                </ListSubheader>
-            }
-            className={classes.root}
-        >
-            {
-                interfaces.map(value => {
-                    return (
-                        <ListItem key={value.id} button onClick={handleClick.bind(null, value.name)}>
-                            <ListItemIcon>
-                                <SendIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={value.name}/>
-                        </ListItem>
-                    )
-                })
-            }
-        </List>
+        <div>
+            {loading ? <Spinner/> : null}
+            <List
+                component="nav"
+                aria-labelledby="nested-list-subheader"
+                subheader={
+                    <ListSubheader component="div" id="nested-list-subheader">
+                        Network Interfaces
+                    </ListSubheader>
+                }
+                className={classes.root}
+            >
+                {
+                    interfaces.map(value => {
+                        return (
+                            <ListItem key={value.id} button onClick={handleClick.bind(null, value.name)}>
+                                <ListItemIcon>
+                                    <SendIcon/>
+                                </ListItemIcon>
+                                <ListItemText primary={value.name}/>
+                            </ListItem>
+                        )
+                    })
+                }
+            </List>
+        </div>
     );
 }

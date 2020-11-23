@@ -44,7 +44,6 @@ export default function PacketsTable({filters}) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        setLoading(true);
         const socket = new SockJS('/gs-guide-websocket');
         const stompClient = Stomp.over(socket);
         stompClient.allowCredentials = false
