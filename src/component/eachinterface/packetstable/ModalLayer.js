@@ -115,6 +115,13 @@ export default function ModalLayer(props) {
         setOpenDescriptor(!openDescriptor);
     };
 
+    const onClose = () => {
+        setOpenSender(false)
+        setOpenReceiver(false)
+        setOpenDescriptor(false)
+        handleClose()
+    }
+
     if (packet == null) {
         return null
     }
@@ -125,11 +132,11 @@ export default function ModalLayer(props) {
                 fullWidth={fullWidth}
                 maxWidth={maxWidth}
                 open={true}
-                onClose={handleClose}
+                onClose={onClose}
             >
                 <div className={classes.closeIcon}>
                     <CloseIcon
-                        onClick={handleClose}
+                        onClick={onClose}
                         style={{fontSize: 30}}
                     />
                 </div>
@@ -182,7 +189,7 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openSender} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Ip Address: {packet.srcIp} v{packet.ipVersion}</p>
+                                            <p>Ip Address: {packet.srcIp} (IPv{packet.ipVersion})</p>
                                         </ListItem>
                                         <ListItem className={classes.nested2}>
                                             <p>Mac Address: {packet.srcMac}</p>
@@ -211,7 +218,7 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openReceiver} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Ip Address: {packet.dstIp} v{packet.ipVersion}</p>
+                                            <p>Ip Address: {packet.dstIp} (Ipv{packet.ipVersion})</p>
                                         </ListItem>
                                         <ListItem className={classes.nested2}>
                                             <p>Mac Address: {packet.dstMac}</p>
@@ -219,7 +226,7 @@ export default function ModalLayer(props) {
                                         {
                                             packet.dstPort ?
                                                 <ListItem className={classes.nested}>
-                                                    <p>Port: {packet.dstPort.value} ({packet.destPort.name})</p>
+                                                    <p>Port: {packet.dstPort.value} ({packet.dstPort.name})</p>
                                                 </ListItem>
                                                 : null
                                         }

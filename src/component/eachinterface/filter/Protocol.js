@@ -87,7 +87,7 @@ const protocols = [
     "All",
     "TCP",
     "UDP",
-    "ICMPV4",
+    "ICMPv4",
     "IGMP",
     "ARP"
 ]
