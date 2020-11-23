@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
         box: {
             padding: '10px',
             flex: '20%',
-            margin: '20px',
+            margin: '8px',
             borderRadius: "5px"
         },
         size: {
@@ -77,14 +77,17 @@ const useStyles = makeStyles((theme) => ({
         protocol: {
             backgroundColor: '#73a942',
         },
+        more: {
+            backgroundColor: "#6a994e",
+        },
         paragraph: {
             textAlign: "center"
         },
         boxContainer: {
             display: "flex",
-            flexWrap: "wrap",
+            flexWrap: "nowrap",
             textAlign: "left",
-            maxWidth: "74%",
+            maxWidth: "90%",
             margin: "auto"
         }
     })
@@ -153,6 +156,19 @@ export default function ModalLayer(props) {
                             Protocol
                             <p className={classes.paragraph}>{packet.protocol}</p>
                         </Box>
+
+                        {
+                            packet.extraInfo ?
+                                <Box
+                                    boxShadow={3}
+                                    className={`${classes.box} ${classes.more}`}
+                                >
+                                    More
+                                    <p className={classes.paragraph}>{packet.extraInfo}</p>
+                                </Box>
+                                : null
+                        }
+
                     </div>
                     <div className={classes.container}>
                         <List className={classes.root}>
@@ -226,13 +242,6 @@ export default function ModalLayer(props) {
                                         <ListItem className={classes.nested}>
                                             <p>{packet.descriptor}</p>
                                         </ListItem>
-                                        {
-                                            packet.extraInfo ?
-                                                <ListItem className={classes.nested2}>
-                                                    <p>More: {packet.extraInfo}</p>
-                                                </ListItem>
-                                                : null
-                                        }
                                     </List>
                                 </Collapse>
                             </Box>
