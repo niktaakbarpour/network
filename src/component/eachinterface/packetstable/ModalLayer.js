@@ -247,7 +247,7 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openDescriptor} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>{packet.descriptor}</p>
+                                            <pre>{packet.descriptor}</pre>
                                         </ListItem>
                                     </List>
                                 </Collapse>

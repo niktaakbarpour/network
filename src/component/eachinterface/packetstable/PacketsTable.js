@@ -47,10 +47,10 @@ export default function PacketsTable({filters}) {
         const socket = new SockJS('/gs-guide-websocket');
         const stompClient = Stomp.over(socket);
         stompClient.allowCredentials = false
-        stompClient.connect({}, function (frame) {
+        stompClient.connect({}, (frame) => {
             setLoading(false);
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/network/packet', function (message) {
+            stompClient.subscribe('/network/packet', (message) => {
                 const packet = JSON.parse(message.body)
                 packets.push(packet)
                 setPackets(packets)
