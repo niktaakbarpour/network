@@ -29,8 +29,8 @@ export default class PacketsTable extends Component {
     }
 
     componentDidMount() {
-        const socket = new SockJS('/gs-guide-websocket');
-        const stompClient = Stomp.over(socket);
+        this.socket = new SockJS('/gs-guide-websocket');
+        const stompClient = Stomp.over(this.socket);
         stompClient.allowCredentials = false
         stompClient.connect({}, (frame) => {
             setInterval(() => {
@@ -47,6 +47,9 @@ export default class PacketsTable extends Component {
         });
     }
 
+    componentWillUnmount() {
+        this.socket.close(1000, "STOP_ANALYZING")
+    }
 
     pushPackets() {
         const {lastIndex} = this.state
@@ -125,7 +128,7 @@ export default class PacketsTable extends Component {
                                         <TableCell align="center">{packet.protocol}</TableCell>
                                         <TableCell align="center">{packet.srcIp}</TableCell>
                                         <TableCell align="center">{packet.dstIp}</TableCell>
-                                        <TableCell align="left">{packet.extraInfo}</TableCell>
+                                        <TableCell align="center">{packet.extraInfo}</TableCell>
                                     </TableRow>
                                 )
                             )}
