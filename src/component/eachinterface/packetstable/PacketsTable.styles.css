@@ -1,0 +1,22 @@
+.tableContainer {
+    width: 90%;
+    margin: auto auto 100px;
+}
+
+.table {
+    min-width: 650px;
+}
+
+.select:hover {
+    background-color: #fafafa;
+    cursor: pointer;
+}
+
+.select:active {
+    background-color: #eeeeee;
+    cursor: pointer;
+}
+
+.title {
+    background-color: #f1f8e9;
+}
