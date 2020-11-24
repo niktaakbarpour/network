@@ -112,8 +112,8 @@ export default class PacketsTable extends Component {
                                 <TableCell align="center">Date</TableCell>
                                 <TableCell align="center">Size (bytes)</TableCell>
                                 <TableCell align="center">Protocol</TableCell>
-                                <TableCell align="center">Source Ip</TableCell>
-                                <TableCell align="center">Destination Ip</TableCell>
+                                <TableCell align="center">Source IP</TableCell>
+                                <TableCell align="center">Destination IP</TableCell>
                                 <TableCell align="center">Info</TableCell>
                             </TableRow>
                         </TableHead>
