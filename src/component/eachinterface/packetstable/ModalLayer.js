@@ -41,12 +41,17 @@ const useStyles = makeStyles((theme) => ({
             borderLeft: "5px solid #4caf50",
             borderTop: "5px solid #ffffff",
             borderBottom: "5px solid #ffffff",
-            borderRadius: "5%",
+            // borderRadius: "5%",
         },
         nested2: {
             paddingLeft: theme.spacing(4),
             borderLeft: "5px solid #4caf50",
         },
+    nested3: {
+        marginTop: "3px" ,
+        paddingLeft: theme.spacing(4),
+        borderLeft: "5px solid #4caf50",
+    },
         listItem: {
             // borderRadius: '5px',
             backgroundColor: "#c5e1a5"
@@ -89,7 +94,12 @@ const useStyles = makeStyles((theme) => ({
             textAlign: "left",
             maxWidth: "88%",
             margin: "auto"
+        },
+        pre: {
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word"
         }
+
     })
 );
 
@@ -246,8 +256,8 @@ export default function ModalLayer(props) {
                             <Box boxShadow={2}>
                                 <Collapse className={classes.collapse} in={openDescriptor} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
-                                        <ListItem className={classes.nested}>
-                                            <pre>{packet.descriptor}</pre>
+                                        <ListItem className={classes.nested3}>
+                                            <pre className={classes.pre}>{packet.descriptor}</pre>
                                         </ListItem>
                                     </List>
                                 </Collapse>
