@@ -199,7 +199,7 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openSender} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Ip Address: {packet.srcIp} (IPv{packet.ipVersion})</p>
+                                            <p>IP Address: {packet.srcIp} (IPv{packet.ipVersion})</p>
                                         </ListItem>
                                         <ListItem className={classes.nested2}>
                                             <p>Mac Address: {packet.srcMac}</p>
@@ -228,7 +228,7 @@ export default function ModalLayer(props) {
                                 <Collapse className={classes.collapse} in={openReceiver} timeout="auto" unmountOnExit>
                                     <List component="div" disablePadding>
                                         <ListItem className={classes.nested}>
-                                            <p>Ip Address: {packet.dstIp} (IPv{packet.ipVersion})</p>
+                                            <p>IP Address: {packet.dstIp} (IPv{packet.ipVersion})</p>
                                         </ListItem>
                                         <ListItem className={classes.nested2}>
                                             <p>Mac Address: {packet.dstMac}</p>
