@@ -11,7 +11,10 @@ import InformationBox from "./InformationBox";
 import Spinner from "../../interfaces/spinner/Spinner";
 import * as SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
-import "./PacketsTable.styles.css"
+import "./PacketsTable.styles.css";
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import { green, blue } from '@material-ui/core/colors';
 
 export default class PacketsTable extends Component {
     static BUFFER_MAX_SIZE = 100
@@ -108,6 +111,7 @@ export default class PacketsTable extends Component {
                     <Table className={"table"} aria-label="simple table">
                         <TableHead>
                             <TableRow className={"title"}>
+                                <TableCell align="center">IN/OUT</TableCell>
                                 <TableCell align="center">#</TableCell>
                                 <TableCell align="center">Date</TableCell>
                                 <TableCell align="center">Size (bytes)</TableCell>
@@ -122,6 +126,23 @@ export default class PacketsTable extends Component {
                                     <TableRow key={packet.id} className={"select"}
                                               onClick={() => this.setState({clickedItem: packet})}
                                     >
+                                        <TableCell align="center" component="th" scope="row">
+                                            {(() => {
+                                                if (packet.type===1) {
+                                                    return (
+                                                        <ArrowUpwardIcon style={{ color: green[500] }} />
+                                                    )
+                                                } else if (packet.type===-1) {
+                                                    return (
+                                                        <ArrowDownwardIcon style={{ color: blue[500] }} />
+                                                    )
+                                                } else {
+                                                    return (
+                                                        null
+                                                    )
+                                                }
+                                            })()}
+                                        </TableCell>
                                         <TableCell align="center" component="th" scope="row">{packet.id}</TableCell>
                                         <TableCell align="center">{packet.date}</TableCell>
                                         <TableCell align="center">{packet.size}</TableCell>
