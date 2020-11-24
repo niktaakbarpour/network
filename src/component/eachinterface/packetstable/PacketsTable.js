@@ -14,14 +14,18 @@ import Stomp from 'stompjs'
 import "./PacketsTable.styles.css"
 
 export default class PacketsTable extends Component {
+    static BUFFER_MAX_SIZE = 100
+    static TIMEOUT = 1000
 
     constructor(props) {
         super(props);
         this.state = {
             packets: [],
             clickedItem: null,
-            loading: true
+            loading: true,
+            lastIndex: -1
         }
+        this.buffer = []
     }
 
     componentDidMount() {
@@ -29,13 +33,30 @@ export default class PacketsTable extends Component {
         const stompClient = Stomp.over(socket);
         stompClient.allowCredentials = false
         stompClient.connect({}, (frame) => {
+            setInterval(() => {
+                this.pushPackets()
+            }, PacketsTable.TIMEOUT)
             this.setState({loading: false})
             stompClient.subscribe('/network/packet', (message) => {
                 const packet = JSON.parse(message.body)
-                this.state.packets.push(packet)
-                this.setState({packets: this.state.packets})
+                this.buffer.push(packet)
+                if (this.buffer.length % PacketsTable.BUFFER_MAX_SIZE === 0) {
+                    this.pushPackets()
+                }
             });
         });
+    }
+
+
+    pushPackets() {
+        const {lastIndex} = this.state
+        if (lastIndex < this.buffer.length - 1) {
+            this.state.packets.push(...this.buffer.slice(lastIndex + 1, this.buffer.length))
+            this.setState({
+                packets: this.state.packets,
+                lastIndex: this.buffer.length - 1
+            })
+        }
     }
 
     render() {
