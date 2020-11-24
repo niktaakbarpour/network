@@ -25,17 +25,22 @@ export default class PacketsTable extends Component {
     }
 
     componentDidMount() {
-        const socket = new SockJS('/gs-guide-websocket');
-        const stompClient = Stomp.over(socket);
-        stompClient.allowCredentials = false
-        stompClient.connect({}, (frame) => {
-            this.setState({loading: false})
-            stompClient.subscribe('/network/packet', (message) => {
-                const packet = JSON.parse(message.body)
-                this.state.packets.push(packet)
-                this.setState({packets: this.state.packets})
-            });
-        });
+        // const socket = new SockJS('/gs-guide-websocket');
+        // const stompClient = Stomp.over(socket);
+        // stompClient.allowCredentials = false
+        // stompClient.connect({}, (frame) => {
+        //     this.setState({loading: false})
+        //     stompClient.subscribe('/network/packet', (message) => {
+        //         const packet = JSON.parse(message.body)
+        //         this.state.packets.push(packet)
+        //         this.setState({packets: this.state.packets})
+        //     });
+        // });
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then((response) => response.json())
+            .then((items) => {
+                this.setState({packets: items, loading: false})
+            })
     }
 
     render() {
