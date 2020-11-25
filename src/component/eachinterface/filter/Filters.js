@@ -16,7 +16,8 @@ import Box from '@material-ui/core/Box';
 const useStyles = makeStyles((theme) => ({
         container: {
             maxWidth: '80%',
-            margin: "auto"
+            margin: "auto",
+            overflow: "hidden",
         },
         filterBy: {
             padding: "8px",
@@ -34,12 +35,9 @@ const useStyles = makeStyles((theme) => ({
         },
         collapse: {
             backgroundColor: '#ffffff',
-            // borderLeft: "3px solid #c5e1a5",
-            // borderRight: "3px solid #c5e1a5"
         },
         root: {
             width: '90%',
-            // backgroundColor: theme.palette.background.paper,
             margin: "auto"
         }
     })
