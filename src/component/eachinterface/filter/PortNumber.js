@@ -1,6 +1,7 @@
 import React from "react";
-import {makeStyles, withStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const useStyles = makeStyles((theme) => ({
         portNumberContainer: {

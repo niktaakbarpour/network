@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import Layer from "./Layer";
 import Protocol from "./Protocol";
 import IpAddress from "./IpAddress";
@@ -12,6 +11,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import CustomizedButton from "./CustomizedButton";
 import Box from '@material-ui/core/Box';
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
         container: {

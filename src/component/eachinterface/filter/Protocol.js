@@ -1,5 +1,4 @@
 import React from "react";
-import {makeStyles} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -9,6 +8,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 import StarBorder from "@material-ui/icons/StarBorder";
 import ReceiptIcon from '@material-ui/icons/Receipt';
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
         protocol: {
