@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from "@material-ui/core/Box";
 import makeStyles from "@material-ui/core/styles/makeStyles";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
         box: {
@@ -58,28 +59,28 @@ export default function InformationBox({packets}) {
         <div className={classes.boxContainer}>
             <Box
                 boxShadow={3}
-                className={`${classes.box} ${classes.count}`}
+                className={clsx(classes.box, classes.count)}
             >
                 Packet Count
                 <p className={classes.paragraph}>{count}</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={`${classes.box} ${classes.minimumSize}`}
+                className={clsx(classes.box, classes.minimumSize)}
             >
                 Minimum Packet Size
                 <p className={classes.paragraph}>{min} bytes</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={`${classes.box} ${classes.maximumSize}`}
+                className={clsx(classes.box, classes.maximumSize)}
             >
                 Maximum Packet Size
                 <p className={classes.paragraph}>{max} bytes</p>
             </Box>
             <Box
                 boxShadow={3}
-                className={`${classes.box} ${classes.averageSize}`}
+                className={clsx(classes.box, classes.averageSize)}
             >
                 Average Size Of Packets
                 <p className={classes.paragraph}>{avg} bytes</p>
