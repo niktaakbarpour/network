@@ -1,6 +1,6 @@
 import React from 'react';
 import Filters from "./filter/Filters";
-import PacketsTable from "./packetstable/PacketsTable";
+import StyledPacketsTable from "./packetstable/PacketsTable";
 
 function Page() {
     const [filters, setFilters] = React.useState({
@@ -19,7 +19,7 @@ function Page() {
     return (
         <div>
             <Filters setParentState={handleFiltersChanged}/>
-            <PacketsTable filters={filters}/>
+            <StyledPacketsTable filters={filters}/>
         </div>
     );
 }

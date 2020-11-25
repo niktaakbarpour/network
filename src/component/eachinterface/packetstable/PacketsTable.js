@@ -11,12 +11,36 @@ import InformationBox from "./InformationBox";
 import Spinner from "../../interfaces/spinner/Spinner";
 import * as SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
-import "./PacketsTable.styles.css";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import {green, blue} from '@material-ui/core/colors';
+import {withStyles} from "@material-ui/core/styles";
 
-export default class PacketsTable extends Component {
+const styles = ((theme) => ({
+        table: {
+            minWidth: 650
+        },
+        tableContainer: {
+            margin: "auto",
+            width: '90%',
+            marginBottom: "100px"
+        },
+        select: {
+            '&:hover': {
+                backgroundColor: '#fafafa',
+                cursor: 'pointer'
+            },
+            '&:active': {
+                backgroundColor: '#eeeeee'
+            },
+        },
+        title: {
+            backgroundColor: '#d7f2ba'
+        }
+    })
+);
+
+class PacketsTable extends Component {
     static BUFFER_MAX_SIZE = 100
     static TIMEOUT = 1000
 
@@ -102,15 +126,16 @@ export default class PacketsTable extends Component {
             }
             return true
         })
+        const {classes} = this.props
 
         return (
             <div>
                 {loading ? <Spinner/> : null}
                 <InformationBox packets={filteredPackets}/>
-                <TableContainer className={"tableContainer"} component={Paper}>
-                    <Table className={"table"} aria-label="simple table">
+                <TableContainer className={classes.tableContainer} component={Paper}>
+                    <Table className={classes.table} aria-label="simple table">
                         <TableHead>
-                            <TableRow className={"title"}>
+                            <TableRow className={classes.title}>
                                 <TableCell align="center">IN/OUT</TableCell>
                                 <TableCell align="center">#</TableCell>
                                 <TableCell align="center">Date</TableCell>
@@ -123,7 +148,7 @@ export default class PacketsTable extends Component {
                         </TableHead>
                         <TableBody>
                             {filteredPackets.map((packet) => (
-                                    <TableRow key={packet.id} className={"select"}
+                                    <TableRow key={packet.id} className={classes.select}
                                               onClick={() => this.setState({clickedItem: packet})}
                                     >
                                         <TableCell align="center" component="th" scope="row">
@@ -159,3 +184,7 @@ export default class PacketsTable extends Component {
         );
     }
 }
+
+const StyledPacketsTable = withStyles(styles)(PacketsTable)
+
+export default StyledPacketsTable
