@@ -14,7 +14,7 @@ import Stomp from 'stompjs'
 import "./PacketsTable.styles.css";
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import { green, blue } from '@material-ui/core/colors';
+import {green, blue} from '@material-ui/core/colors';
 
 export default class PacketsTable extends Component {
     static BUFFER_MAX_SIZE = 100
@@ -128,18 +128,16 @@ export default class PacketsTable extends Component {
                                     >
                                         <TableCell align="center" component="th" scope="row">
                                             {(() => {
-                                                if (packet.type===1) {
+                                                if (packet.type === 1) {
                                                     return (
-                                                        <ArrowUpwardIcon style={{ color: green[500] }} />
+                                                        <ArrowUpwardIcon style={{color: green[500]}}/>
                                                     )
-                                                } else if (packet.type===-1) {
+                                                } else if (packet.type === -1) {
                                                     return (
-                                                        <ArrowDownwardIcon style={{ color: blue[500] }} />
+                                                        <ArrowDownwardIcon style={{color: blue[500]}}/>
                                                     )
                                                 } else {
-                                                    return (
-                                                        null
-                                                    )
+                                                    return null
                                                 }
                                             })()}
                                         </TableCell>
