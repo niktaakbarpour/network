@@ -1,7 +1,8 @@
 import React from 'react';
-import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {green} from '@material-ui/core/colors';
+import withStyles from "@material-ui/core/styles/withStyles";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles((theme) => ({
         margin: {

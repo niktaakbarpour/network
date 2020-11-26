@@ -1,5 +1,4 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 import List from "@material-ui/core/List";
@@ -9,6 +8,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
         closeIcon: {
@@ -45,13 +46,13 @@ const useStyles = makeStyles((theme) => ({
         },
         nested2: {
             paddingLeft: theme.spacing(4),
-            borderLeft: "5px solid #4caf50",
+            borderLeft: "5px solid #4caf50"
         },
-    nested3: {
-        marginTop: "3px" ,
-        paddingLeft: theme.spacing(4),
-        borderLeft: "5px solid #4caf50",
-    },
+        nested3: {
+            marginTop: "3px",
+            paddingLeft: theme.spacing(4),
+            borderLeft: "5px solid #4caf50"
+        },
         listItem: {
             // borderRadius: '5px',
             backgroundColor: "#c5e1a5"
@@ -154,21 +155,21 @@ export default function ModalLayer(props) {
                     <div className={classes.boxContainer}>
                         <Box
                             boxShadow={3}
-                            className={`${classes.box} ${classes.size}`}
+                            className={clsx(classes.box, classes.size)}
                         >
                             Size
                             <p className={classes.paragraph}>{`${packet.size} bytes`}</p>
                         </Box>
                         <Box
                             boxShadow={3}
-                            className={`${classes.box} ${classes.date}`}
+                            className={clsx(classes.box, classes.date)}
                         >
                             Date
                             <p className={classes.paragraph}>{packet.date}</p>
                         </Box>
                         <Box
                             boxShadow={3}
-                            className={`${classes.box} ${classes.protocol}`}
+                            className={clsx(classes.box, classes.protocol)}
                         >
                             Protocol
                             <p className={classes.paragraph}>{packet.protocol}</p>
@@ -178,7 +179,7 @@ export default function ModalLayer(props) {
                             packet.extraInfo ?
                                 <Box
                                     boxShadow={3}
-                                    className={`${classes.box} ${classes.more}`}
+                                    className={clsx(classes.box, classes.more)}
                                 >
                                     More
                                     <p className={classes.paragraph}>{packet.extraInfo}</p>
