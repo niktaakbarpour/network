@@ -3,9 +3,9 @@ import Filters from "./filter/Filters";
 import * as SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import Spinner from "../interfaces/spinner/Spinner";
-import InformationBox from "./packetstable/InformationBox";
-import CustomizedTable from "./packetstable/CustomizedTable";
-import ModalLayer from "./packetstable/ModalLayer";
+import InformationBox from "./InformationBox";
+import CustomizedTable from "./CustomizedTable";
+import ModalLayer from "./ModalLayer";
 
 export default class Page extends React.Component {
     static BUFFER_MAX_SIZE = 100
