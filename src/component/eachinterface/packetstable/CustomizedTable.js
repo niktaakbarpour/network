@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
         table: {
             '& .ReactVirtualized__Table__headerRow': {
                 flip: false,
-                paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
-            },
+                paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined
+            }
         },
         flexContainer: {
             display: 'flex',
@@ -35,20 +35,21 @@ const useStyles = makeStyles((theme) => ({
                 outline: 'none'
             },
             '&:hover': {
-                backgroundColor: '#fafafa',
+                backgroundColor: '#fafafa'
             },
             '&:active': {
                 backgroundColor: '#eeeeee'
             }
         },
         tableCell: {
-            flex: 1,
+            flex: 1
         },
         paper: {
             width: '80%',
             height: 500,
             margin: 'auto',
-            marginBottom: 50
+            marginBottom: 50,
+            marginTop: 20
         }
     })
 )
@@ -132,12 +133,12 @@ export default function CustomizedTable({packets, onClick}) {
                     >
                         {getColumn('In/Out', 'type', 50, 1, 2)}
                         {getColumn('No.', 'id', 50, 1, 2)}
-                        {getColumn('Date', 'date', 200, 1, 2)}
-                        {getColumn('Size (bytes)', 'size', 100, 1, 2)}
-                        {getColumn('Protocol', 'protocol', 80, 1, 2)}
-                        {getColumn('Source IP', 'srcIp', 120, 1, 2)}
-                        {getColumn('Destination IP', 'dstIp', 120, 1, 2)}
-                        {getColumn('Info', 'extraInfo', 200, 1, 2)}
+                        {getColumn('Date', 'date', 120, 2, 2)}
+                        {getColumn('Size (bytes)', 'size', 80, 2, 2)}
+                        {getColumn('Protocol', 'protocol', 80, 2, 2)}
+                        {getColumn('Source IP', 'srcIp', 100, 3, 2)}
+                        {getColumn('Destination IP', 'dstIp', 100, 3, 2)}
+                        {getColumn('Info', 'extraInfo', 300, 5, 2)}
                     </Table>
                 )}
             </AutoSizer>
