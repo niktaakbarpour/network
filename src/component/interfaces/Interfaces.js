@@ -36,23 +36,19 @@ const theme = createMuiTheme({
 export default function Interfaces(props) {
     const classes = useStyles();
     const [interfaces, setInterfaces] = React.useState([]);
-    // const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         axios.get("/interface")
             .then(res => {
                 setInterfaces(res.data)
-                // setLoading(false);
             })
     }, [])
 
     const handleClick = (name) => {
-        // setLoading(true);
         axios.post(
             "/interface",
             {name: name}
         ).then(res => {
-            // setLoading(false);
             if (res.status === 200) {
                 props.history.push("/EachInterface");
             }
@@ -61,7 +57,6 @@ export default function Interfaces(props) {
 
     return (
         <div>
-            {/*{loading ? <Spinner/> : null}*/}
             <ThemeProvider theme={theme}>
                 <List
                     component="nav"

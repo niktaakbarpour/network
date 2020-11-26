@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
             width: '80%',
             height: 500,
             margin: 'auto',
+            marginBottom: 50
         }
     })
 )
