@@ -2,7 +2,7 @@ import React from 'react';
 import Filters from "./filter/Filters";
 import * as SockJS from "sockjs-client";
 import Stomp from "stompjs";
-import Spinner from "../interfaces/spinner/Spinner";
+import Spinner from "./spinner/Spinner";
 import InformationBox from "./InformationBox";
 import CustomizedTable from "./CustomizedTable";
 import ModalLayer from "./ModalLayer";
